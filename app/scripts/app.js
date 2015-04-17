@@ -2,31 +2,34 @@
 
 /**
  * @ngdoc overview
- * @name contactsClientApp
+ * @name contactsClient
  * @description
- * # contactsClientApp
+ * # contactsClient
  *
  * Main module of the application.
  */
 angular
-  .module('contactsClientApp', [
+  .module('contactsClient', [
     'ngAnimate',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngMaterial',
+    'ui.router',
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider
+      .state('mainpage', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
+      .state('/about', {
+        url: '/about',
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
-  });
+
+  }]);

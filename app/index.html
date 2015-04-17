@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="contactsClient">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -8,66 +8,69 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="contactsClientApp">
+  <body layout="row" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
 
-            <a class="navbar-brand" href="#/">contactsClient</a>
-          </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+      <md-toolbar layout="row">
+        <h1 class="md-toolbar-tools" layout-align-gt-sm="center">
+          <a href="/" title="home page" layout="row" flex>Rodzinny przypominacz</a>
+        </h1>
+      </md-toolbar>
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+
+      <md-content flex="" role="navigation" class="md-default-theme">
+        <ul class="docs-menu">
+          <li>
+            <menu-link section="section">Kontakty</menu-link>
+          </li>
+          <li><a class="md-button md-default-theme active" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="#/getting-started" ng-click="focusSection()" tabindex="0" href="#/getting-started"><span class="ng-binding ng-scope">
+  Getting Started
+  </span><!-- ngIf: isSelected() --><span class="md-visually-hidden ng-scope" ng-if="isSelected()">
+    current page
+  </span><!-- end ngIf: isSelected() -->
+<div class="md-ripple-container"></div></a></li>
+        </ul>
+
+      </md-content>
+
+    </md-sidenav>
+
+
+
+
+    <div layout="column" role="main">
+      <md-toolbar>
+        <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <h1 class="md-toolbar-tools">Kontakty</h1>
+      </md-toolbar>
+
+
+      <md-content id="content" md-scroll-y flex layout-padding>
+
+        <ui-view></ui-view>
+
+
+      </md-content>
+
     </div>
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -76,9 +79,11 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

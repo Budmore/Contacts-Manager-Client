@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name contactsClientApp.controller:AboutCtrl
+ * @name contactsClient.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the contactsClientApp
+ * Controller of the contactsClient
  */
-angular.module('contactsClientApp')
+angular.module('contactsClient')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
