@@ -1,0 +1,60 @@
+
+//
+// Tables theme
+// --------------------------------------------------
+.table-minimalistic
+  td,
+  th
+    // font-size: 0.7em
+    color: $grey
+    font-weight: 300
+
+  .strong
+    // font-size: 0.8em
+    // color: $theme-blue-dark
+    font-weight: 400
+
+  tr:hover
+    .strong
+      // color: $theme-green
+
+.st-sort
+  cursor: pointer
+  &:after
+    margin-left: 0.5em
+    border-bottom: 1.1px solid rgba(0,0,0,0)
+    border-right: 1.1px solid rgba(0,0,0,0)
+    content: ""
+    display: inline-block
+    height: 5px
+    position: relative
+    top: -2px
+    width: 5px
+    transition: transform ease .2s
+    transform: rotateZ(-135deg)
+
+  &:hover:after
+    border-bottom-color: $grey-light
+    border-right-color: $grey-light
+
+
+  &.st-sort-descent
+    color: $grey-darker
+    &:after
+      transform: rotateZ(45deg)
+      border-bottom-color: $grey
+      border-right-color: $grey
+
+  &.st-sort-ascent
+    color: $grey-darker
+    &:after
+      transform: rotateZ(-135deg)
+      border-bottom-color: $grey
+      border-right-color: $grey
+
+.table-minimalistic
+  > tbody
+    > tr
+      > th,
+      > td
+        border-top: none

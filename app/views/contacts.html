@@ -1,11 +1,11 @@
 <md-icon md-svg-icon="./assets/svg/avatar-1.svg" class="avatar"></md-icon>
 <h2>Lia Luogo 2</h2>
 
-<table st-table="contactsList" class="table table-striped">
+<table st-table="contactsList" class="table table-fixed table-minimalistic">
   <thead>
   <tr>
-    <th>first name</th>
-    <th>last name</th>
+    <th st-skip-natural="true" st-sort="firstname" class="st-sort">first name</th>
+    <th st-skip-natural="true" st-sort="lasttname" class="st-sort">last name</th>
     <th>birth date</th>
     <th>balance</th>
     <th>email</th>
@@ -21,10 +21,5 @@
   </tr>
   </tbody>
 </table>
-
-
-<ul>
-  <li ng-repeat="contact in contactsList">{{ contact.firstname }}</li>
-</ul>
 
 
