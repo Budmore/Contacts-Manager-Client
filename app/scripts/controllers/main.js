@@ -8,10 +8,9 @@
  * Controller of the contactsClient
  */
 angular.module('contactsClient')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+	.controller('MainCtrl', function () {
+		// $rootScope.breadCrumps = {
+		// 	title: 'Contacts1'
+		// };
+	});
+

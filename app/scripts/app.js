@@ -9,27 +9,37 @@
  * Main module of the application.
  */
 angular
-  .module('contactsClient', [
-    'ngAnimate',
-    'ngResource',
-    'ngSanitize',
-    'ngTouch',
-    'ngMaterial',
-    'ui.router',
-  ])
-  .config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/');
+	.module('contactsClient', [
+		'ngAnimate',
+		'ngResource',
+		'ngSanitize',
+		'ngTouch',
+		'ngMaterial',
+		'ui.router',
+		'smart-table'
+	])
+	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+		$urlRouterProvider.otherwise('/');
 
-    $stateProvider
-      .state('mainpage', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('/about', {
-        url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      });
+		$stateProvider
+			.state('mainpage', {
+				title: 'Contacts',
+				url: '/',
+				templateUrl: 'views/contacts.html',
+				controller: 'ContactsListCtrl'
+			})
+			.state('settings', {
+				title: 'Settings',
+				url: '/settings',
+				templateUrl: 'views/settings.html',
+				// controller: 'AboutCtrl'
+			});
 
-  }]);
+	}])
+
+	.run(['$rootScope', function($rootScope) {
+		$rootScope.$on('$stateChangeSuccess', function (event, currentRoute) {
+			$rootScope.pageTitle = currentRoute.title;
+		});
+
+	}]);

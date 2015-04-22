@@ -2,7 +2,7 @@
 <html class="no-js" ng-app="contactsClient">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title ng-bind="pageTitle"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -23,25 +23,24 @@
 
 
 
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+    <md-sidenav md-is-locked-open="true" class="sidebar-left md-whiteframe-z2">
       <md-toolbar layout="row">
-        <h1 class="md-toolbar-tools" layout-align-gt-sm="center">
-          <a href="/" title="home page" layout="row" flex>Rodzinny przypominacz</a>
+        <h1 class="md-toolbar-tools" layout-align-gt="center">
+          <a ui-sref="mainpage" title="home page">
+            <span class="glyphicon glyphicon-tower"></span>
+          </a>
         </h1>
       </md-toolbar>
 
 
-      <md-content flex="" role="navigation" class="md-default-theme">
-        <ul class="docs-menu">
-          <li>
-            <menu-link section="section">Kontakty</menu-link>
+      <md-content flex="" layout="column" role="navigation" class="md-default-theme">
+        <ul class="navigation-menu">
+          <li ui-sref-active="active">
+             <md-button ui-sref="mainpage" title="contacts subpage"><span class="glyphicon glyphicon-list"></span> Contacts</md-button>
           </li>
-          <li><a class="md-button md-default-theme active" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="#/getting-started" ng-click="focusSection()" tabindex="0" href="#/getting-started"><span class="ng-binding ng-scope">
-  Getting Started
-  </span><!-- ngIf: isSelected() --><span class="md-visually-hidden ng-scope" ng-if="isSelected()">
-    current page
-  </span><!-- end ngIf: isSelected() -->
-<div class="md-ripple-container"></div></a></li>
+          <li ui-sref-active="active">
+            <md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
+          </li>
         </ul>
 
       </md-content>
@@ -56,7 +55,7 @@
         <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
           <span class="visually-hidden">Menu</span>
         </button>
-        <h1 class="md-toolbar-tools">Kontakty</h1>
+        <h1 class="md-toolbar-tools" ng-bind="pageTitle"></h1>
       </md-toolbar>
 
 
@@ -84,6 +83,7 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -91,6 +91,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/ContactsListCtrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>

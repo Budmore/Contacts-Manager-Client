@@ -1,0 +1,30 @@
+<md-icon md-svg-icon="./assets/svg/avatar-1.svg" class="avatar"></md-icon>
+<h2>Lia Luogo 2</h2>
+
+<table st-table="contactsList" class="table table-striped">
+  <thead>
+  <tr>
+    <th>first name</th>
+    <th>last name</th>
+    <th>birth date</th>
+    <th>balance</th>
+    <th>email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in contactsList">
+    <td>{{row.firstname}}</td>
+    <td>{{row.lastname}}</td>
+    <td>{{row.birthDate}}</td>
+    <td>{{row.balance}}</td>
+    <td>{{row.email}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<ul>
+  <li ng-repeat="contact in contactsList">{{ contact.firstname }}</li>
+</ul>
+
+
