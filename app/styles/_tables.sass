@@ -6,17 +6,17 @@
   td,
   th
     // font-size: 0.7em
-    color: $grey
+    // color: $grey
     font-weight: 300
 
   .strong
     // font-size: 0.8em
-    // color: $theme-blue-dark
+    color: $theme-main
     font-weight: 400
 
   tr:hover
     .strong
-      // color: $theme-green
+      color: $theme-accent
 
 .st-sort
   cursor: pointer
@@ -51,6 +51,17 @@
       transform: rotateZ(-135deg)
       border-bottom-color: $grey
       border-right-color: $grey
+
+.table-fixed
+  table-layout: fixed
+  white-space: nowrap
+  > tbody
+    > tr
+      > th,
+      > td
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
 
 .table-minimalistic
   > tbody

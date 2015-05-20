@@ -16,7 +16,9 @@ angular
 		'ngTouch',
 		'ngMaterial',
 		'ui.router',
-		'smart-table'
+		'smart-table',
+
+		'contactsModule'
 	])
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
 		$urlRouterProvider.otherwise('/');

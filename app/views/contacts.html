@@ -1,25 +1,28 @@
-<md-icon md-svg-icon="./assets/svg/avatar-1.svg" class="avatar"></md-icon>
-<h2>Lia Luogo 2</h2>
-
-<table st-table="contactsList" class="table table-fixed table-minimalistic">
-  <thead>
-  <tr>
-    <th st-skip-natural="true" st-sort="firstname" class="st-sort">first name</th>
-    <th st-skip-natural="true" st-sort="lasttname" class="st-sort">last name</th>
-    <th>birth date</th>
-    <th>balance</th>
-    <th>email</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr ng-repeat="row in contactsList">
-    <td>{{row.firstname}}</td>
-    <td>{{row.lastname}}</td>
-    <td>{{row.birthDate}}</td>
-    <td>{{row.balance}}</td>
-    <td>{{row.email}}</td>
-  </tr>
-  </tbody>
+<table st-table="contactsList" st-safe-src="rowCollection" class="table table-fixed table-minimalistic">
+	<thead>
+	<tr>
+		<th st-skip-natural="true" st-sort="firstname" class="st-sort">Firtsname</th>
+		<th st-skip-natural="true" st-sort="lastname" class="st-sort">Lastname</th>
+		<th st-skip-natural="true" st-sort="email" class="st-sort">Email</th>
+		<th st-skip-natural="true" st-sort="dates" class="st-sort">Birth date</th>
+		<th></th>
+	</tr>
+	<tr>
+		<th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in contactsList">
+		<td class="strong">{{row.firstname}}</td>
+		<td class="strong">{{row.lastname}}</td>
+		<td>{{row.email}}</td>
+		<td>{{ getDate(row.dates, 'BIRTHDATE')}}</td>
+		<td>
+			<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+				<i class="glyphicon glyphicon-remove-circle">
+				</i>
+			</button>
+		</td>
+	</tr>
+	</tbody>
 </table>
-
-
