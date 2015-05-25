@@ -24,17 +24,20 @@ angular
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
-			.state('mainpage', {
-				title: 'Contacts',
-				url: '/',
-				templateUrl: 'views/contacts.html',
-				controller: 'ContactsListCtrl'
-			})
 			.state('settings', {
 				title: 'Settings',
 				url: '/settings',
-				templateUrl: 'views/settings.html',
-				// controller: 'AboutCtrl'
+				templateUrl: 'modules/main/views/settings.html',
+			})
+			.state('contacts', {
+				title: 'Contacts',
+				url: '/contacts',
+				templateUrl: 'modules/contacts/views/contacts.html',
+			})
+			.state('create-contact', {
+				title: 'Create contact',
+				url: '/contacts/create',
+				templateUrl: 'modules/contacts/views/create-contact.html',
 			});
 
 	}])

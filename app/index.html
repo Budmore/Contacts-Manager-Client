@@ -1,100 +1,101 @@
 <!doctype html>
 <html class="no-js" ng-app="contactsClient">
-  <head>
-    <meta charset="utf-8">
-    <title ng-bind="pageTitle"></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body layout="row" ng-controller="MainCtrl">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title ng-bind="pageTitle"></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<!-- build:css(.) styles/vendor.css -->
+		<!-- bower:css -->
+		<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+		<!-- endbower -->
+		<!-- endbuild -->
+		<!-- build:css(.tmp) styles/main.css -->
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- endbuild -->
+	</head>
+	<body layout="row" ng-controller="MainCtrl">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
 
 
 
 
-    <md-sidenav md-is-locked-open="true" class="sidebar-left md-whiteframe-z2">
-      <md-toolbar layout="row">
-        <h1 class="md-toolbar-tools" layout-align-gt="center">
-          <a ui-sref="mainpage" title="home page">
-            <span class="glyphicon glyphicon-tower"></span>
-          </a>
-        </h1>
-      </md-toolbar>
+		<md-sidenav md-is-locked-open="true" class="sidebar-left md-whiteframe-z2">
+			<md-toolbar layout="row">
+				<h1 class="md-toolbar-tools" layout-align-gt="center">
+					<a ui-sref="contacts" title="home page">
+						<span class="glyphicon glyphicon-tower"></span>
+					</a>
+				</h1>
+			</md-toolbar>
 
 
-      <md-content  role="navigation" class="md-default-theme">
-        <ul class="navigation-menu">
-          <li ui-sref-active="active">
-             <md-button ui-sref="mainpage" title="contacts subpage"><span class="glyphicon glyphicon-list"></span> Contacts</md-button>
-          </li>
-          <li ui-sref-active="active">
-            <md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
-          </li>
-        </ul>
+			<md-content  role="navigation" class="md-default-theme">
+				<ul class="navigation-menu">
+					<li ui-sref-active="active">
+						 <md-button ui-sref="contacts" title="contacts subpage"><span class="glyphicon glyphicon-list"></span> Contacts</md-button>
+					</li>
+					<li ui-sref-active="active">
+						<md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
+					</li>
+				</ul>
 
-      </md-content>
+			</md-content>
 
-    </md-sidenav>
-
-
-
-
-    <div layout="column" role="main">
-      <md-toolbar>
-        <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-          <span class="visually-hidden">Menu</span>
-        </button>
-        <h1 class="md-toolbar-tools" ng-bind="pageTitle"></h1>
-      </md-toolbar>
-
-
-      <md-content id="content" md-scroll-y flex layout-padding layout="column">
-
-        <ui-view></ui-view>
-
-
-      </md-content>
-
-    </div>
+		</md-sidenav>
 
 
 
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-    <script src="bower_components/momentjs/moment.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+		<div layout="column" role="main" flex>
+			<md-toolbar>
+				<button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+					<span class="visually-hidden">Menu</span>
+				</button>
+				<h1 class="md-toolbar-tools" ng-bind="pageTitle"></h1>
+			</md-toolbar>
 
-    <script src="modules/app.js"></script>
-    <script src="modules/main/main.js"></script>
-    <script src="modules/main/about.js"></script>
 
-    <script src="modules/contacts/contacts-module.js"></script>
-    <script src="modules/contacts/controllers/contacts-list-ctrl.js"></script>
-    <script src="modules/contacts/services/contacts-service.js"></script>
-    <script src="modules/contacts/services/contacts-resource.js"></script>
+			<md-content id="content" md-scroll-y flex layout-padding layout="column">
+
+				<ui-view></ui-view>
+
+
+			</md-content>
+
+		</div>
+
+
+
+
+		<!-- build:js(.) scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-touch/angular-touch.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-material/angular-material.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+		<script src="bower_components/momentjs/moment.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<script src="modules/app.js"></script>
+		<script src="modules/main/main.js"></script>
+		<script src="modules/main/about.js"></script>
+
+		<script src="modules/contacts/contacts-module.js"></script>
+		<script src="modules/contacts/controllers/contacts-list-ctrl.js"></script>
+		<script src="modules/contacts/controllers/create-contact-ctrl.js"></script>
+		<script src="modules/contacts/services/contacts-service.js"></script>
+		<script src="modules/contacts/services/contacts-resource.js"></script>
 </body>
 </html>

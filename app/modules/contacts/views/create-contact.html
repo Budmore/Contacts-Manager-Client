@@ -1,0 +1,68 @@
+
+<md-content layout-padding ng-controller="CreateContactCtrl">
+	<!-- ng-submit="" -->
+	<form name="userForm" ng-submit="createContact(contact)">
+
+		<div layout layout-sm="column">
+			<md-input-container flex>
+				<label>Firstname</label>
+				<input g-model="contact.firstname">
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Lastname</label>
+				<input ng-model="contact.lastname">
+			</md-input-container>
+		</div>
+
+
+		<div layout layout-sm="column">
+			<md-input-container flex>
+				<label>Phone</label>
+				<input ng-model="contact.phone">
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Email</label>
+				<input type="email" ng-model="contact.email">
+			</md-input-container>
+		</div>
+
+		<div >
+			Add new
+			<md-select ng-model="favoriteTopping" placeholder="date">
+				<md-option
+				ng-repeat="dateType in dateTypes"
+				ng-value="dateType.name"
+				ng-click="addDate(dateType.type, contact)">
+					{{dateType.name}}
+				</md-option>
+			</md-select>
+
+			<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
+				<label>Date</label>
+				<input type="date" ng-model="dates[date].date">
+				<div class="meta">
+					<button type="button" ng-click="removeItemFromArray(date, contact.dates)" class="btn btn-sm btn-danger">
+						<i class="glyphicon glyphicon-trash">
+						</i>
+					</button>
+				</div>
+
+			</md-input-container>
+
+
+		</div>
+
+
+		<section layout="row" layout-sm="column" layout-align="left center">
+			<md-button class="md-raised md-primary">
+				<span class="glyphicon glyphicon-plus"></span>
+				Save new contact
+			</md-button>
+			<md-button ui-sref="contacts" title="Cancel and back to contacts list">
+				Cancel
+			</md-button>
+		</section>
+	</form>
+</md-content>

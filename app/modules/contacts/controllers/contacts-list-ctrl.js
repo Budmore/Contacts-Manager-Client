@@ -8,7 +8,7 @@
  * Controller of the contactsModule
  */
 angular.module('contactsModule')
-	.controller('ContactsListCtrl',['$rootScope', '$scope', function ($scope, $rootScope) {
+	.controller('ContactsListCtrl',['$rootScope', '$scope', function ($rootScope, $scope) {
 
 		// var someDate = new Date();
 		// var _contact = {
