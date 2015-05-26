@@ -1,15 +1,14 @@
 describe('contactsModule services:', function() {
 	'use strict';
-	var $httpBackend, contactsService, successCb, errorCb;
-
-	var globalSettings = {
-		baseUrl: 'http://localhost:8000'
-	};
+	var $httpBackend, contactsService, successCb, errorCb, GLOBAL_SETTINGS;
 
 
 	beforeEach(module('contactsModule'));
+	beforeEach(module('contactsClient'));
 
 	beforeEach(inject(function($injector) {
+		GLOBAL_SETTINGS = $injector.get('GLOBAL_SETTINGS');
+
 		$httpBackend = $injector.get('$httpBackend');
 		contactsService = $injector.get('contactsService');
 
@@ -26,12 +25,12 @@ describe('contactsModule services:', function() {
 
 
 		it('should GET all contacts', function() {
-			$httpBackend.expectGET(globalSettings.baseUrl + '/contacts').respond(200, {});
+			$httpBackend.expectGET(GLOBAL_SETTINGS.BASE_URL + '/contacts').respond(200, {});
 			contactsService.getContacts().then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectGET(globalSettings.baseUrl + '/contacts').respond(404, {});
+			$httpBackend.expectGET(GLOBAL_SETTINGS.BASE_URL + '/contacts').respond(404, {});
 			contactsService.getContacts().then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();
@@ -42,12 +41,12 @@ describe('contactsModule services:', function() {
 				id: '123sad123'
 			};
 
-			$httpBackend.expectGET(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(200, {});
+			$httpBackend.expectGET(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(200, {});
 			contactsService.getContactById(mocked.id).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectGET(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(404, {});
+			$httpBackend.expectGET(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(404, {});
 			contactsService.getContactById(mocked.id).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();
@@ -59,12 +58,12 @@ describe('contactsModule services:', function() {
 				lastName: 'Mach'
 			};
 
-			$httpBackend.expectPOST(globalSettings.baseUrl + '/contacts').respond(200, {});
+			$httpBackend.expectPOST(GLOBAL_SETTINGS.BASE_URL + '/contacts').respond(200, {});
 			contactsService.createContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectPOST(globalSettings.baseUrl + '/contacts').respond(404, {});
+			$httpBackend.expectPOST(GLOBAL_SETTINGS.BASE_URL + '/contacts').respond(404, {});
 			contactsService.createContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();
@@ -77,12 +76,12 @@ describe('contactsModule services:', function() {
 				lastName: 'Mach'
 			};
 
-			$httpBackend.expectPUT(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(200, {});
+			$httpBackend.expectPUT(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(200, {});
 			contactsService.updateContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectPUT(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(404, {});
+			$httpBackend.expectPUT(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(404, {});
 			contactsService.updateContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();
@@ -95,12 +94,12 @@ describe('contactsModule services:', function() {
 				lastName: 'Mach'
 			};
 
-			$httpBackend.expectDELETE(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(200, {});
+			$httpBackend.expectDELETE(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(200, {});
 			contactsService.removeContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectDELETE(globalSettings.baseUrl + '/contacts/' + mocked.id).respond(404, {});
+			$httpBackend.expectDELETE(GLOBAL_SETTINGS.BASE_URL + '/contacts/' + mocked.id).respond(404, {});
 			contactsService.removeContact(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();

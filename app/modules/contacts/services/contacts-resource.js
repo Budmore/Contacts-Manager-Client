@@ -2,13 +2,9 @@
 
 angular
 	.module('contactsModule')
-	.factory('contactsResource', ['$resource', function($resource) {
+	.factory('contactsResource', ['$resource', 'GLOBAL_SETTINGS', function($resource, GLOBAL_SETTINGS) {
 
-			var globalSettings = {
-				baseUrl: 'http://localhost:8000'
-			};
-
-			return $resource( globalSettings.baseUrl + '/contacts/:action/:id',
+			return $resource( GLOBAL_SETTINGS.BASE_URL + '/contacts/:action/:id',
 				{
 					action: '@action',
 					id: '@id'

@@ -20,6 +20,11 @@ angular
 
 		'contactsModule'
 	])
+
+	.constant('GLOBAL_SETTINGS', {
+		BASE_URL: 'http://localhost:9010'
+	})
+
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
 		$urlRouterProvider.otherwise('/');
 
