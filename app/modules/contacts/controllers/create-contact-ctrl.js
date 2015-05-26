@@ -28,8 +28,18 @@ angular.module('contactsModule')
 		}];
 
 
+		var _contact = {
+			dates: [{
+				type: 'BIRTHDATE'
+			}]
+		};
+
+		$scope.contact = angular.copy(_contact);
+
+
+
 		/**
-		 * Push specyfic dateType to the model
+		 * Push specific dateType to the model
 		 * @param {string} dateTyp
 		 * @param {object} model
 		 */
@@ -47,17 +57,6 @@ angular.module('contactsModule')
 			}
 
 		};
-
-
-		var _contact = {
-			firstname: '',
-			lastname: '',
-			dates: [
-				{}
-			]
-		};
-
-		$scope.contact = angular.copy(_contact);
 
 		/**
 		 * Remove item from anny array. Find item in array with "indexOf" and
@@ -83,9 +82,10 @@ angular.module('contactsModule')
 			$scope.showSpinner = true;
 			$scope.isError = false;
 
+
 			contactsService.createContact(contact).then(
-				function success(data) {
-					$scope.contact = data;
+				function success() {
+					$scope.contact = angular.copy(_contact);
 				}, function error() {
 					$scope.isError = true;
 				}
@@ -93,6 +93,7 @@ angular.module('contactsModule')
 				$scope.showSpinner = false;
 			});
 		};
+
 
 
 	}]);

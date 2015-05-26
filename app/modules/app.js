@@ -22,7 +22,7 @@ angular
 	])
 
 	.constant('GLOBAL_SETTINGS', {
-		BASE_URL: 'http://localhost:9010'
+		BASE_URL: 'http://localhost:9010/api/v1',
 	})
 
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {

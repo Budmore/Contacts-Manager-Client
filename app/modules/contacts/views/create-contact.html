@@ -6,7 +6,7 @@
 		<div layout layout-sm="column">
 			<md-input-container flex>
 				<label>Firstname</label>
-				<input g-model="contact.firstname">
+				<input ng-model="contact.firstname">
 			</md-input-container>
 
 			<md-input-container flex>
@@ -41,7 +41,7 @@
 
 			<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
 				<label>Date</label>
-				<input type="date" ng-model="dates[date].date">
+				<input type="date" ng-model="date.date">
 				<div class="meta">
 					<button type="button" ng-click="removeItemFromArray(date, contact.dates)" class="btn btn-sm btn-danger">
 						<i class="glyphicon glyphicon-trash">
@@ -50,7 +50,6 @@
 				</div>
 
 			</md-input-container>
-
 
 		</div>
 
