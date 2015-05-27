@@ -23,7 +23,7 @@
 
 
 
-		<md-sidenav md-is-locked-open="true" class="sidebar-left md-whiteframe-z1">
+		<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="sidebar-left md-whiteframe-z1">
 			<md-toolbar layout="row">
 				<h1 class="md-toolbar-tools" layout-align-gt="center">
 					<a ui-sref="contacts" title="home page">
@@ -31,7 +31,6 @@
 					</a>
 				</h1>
 			</md-toolbar>
-
 
 			<md-content role="navigation" class="md-default-theme">
 				<ul class="navigation-menu">
@@ -62,11 +61,7 @@
 			</md-toolbar>
 
 
-			<md-content flex layout="row">
-
-				<ui-view></ui-view>
-
-
+			<md-content ui-view flex md-scroll-y class="md-default-theme">
 			</md-content>
 
 		</div>

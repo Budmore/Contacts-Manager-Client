@@ -9,6 +9,7 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 	// load the controller's module
 	beforeEach(module('contactsModule'));
 	beforeEach(module('globalConfig'));
+	beforeEach(module('ngMaterial'));
 
 	beforeEach(inject(function($rootScope, $controller, _$q_, _contactsService_) {
 		$q = _$q_;

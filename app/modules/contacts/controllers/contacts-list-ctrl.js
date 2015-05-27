@@ -110,12 +110,17 @@ angular.module('contactsModule')
 					.toggle()
 					.then(function () {
 					});
-				},300);
+				}, 200);
 			return debounceFn;
 		}
 
 		$scope.toggleContactForm = buildToggler('single-contact');
 
 
+		$scope.goToContact = function(contact, $event) {
+			$scope.selectedContact = angular.copy(contact);
+
+
+		};
 
 	}]);

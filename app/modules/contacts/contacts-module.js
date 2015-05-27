@@ -20,11 +20,7 @@ angular
 				title: 'Contacts',
 				url: '/contacts',
 				templateUrl: 'modules/contacts/views/contacts.html',
-			})
-			.state('create-contact', {
-				title: 'Create contact',
-				url: '/contacts/create',
-				templateUrl: 'modules/contacts/views/single-contact.html',
 			});
+
 
 	}]);

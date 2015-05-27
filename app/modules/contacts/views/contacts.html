@@ -1,44 +1,57 @@
+
+
+
 <div ng-controller="ContactsListCtrl" ng-init="init()">
 
-	<table st-table="displayedCollection" st-safe-src="contactsList" class="table table-fixed table-minimalistic">
-		<thead>
-		<tr>
-			<th st-skip-natural="true" st-sort="firstname" class="st-sort">Firtsname</th>
-			<th st-skip-natural="true" st-sort="lastname" class="st-sort">Lastname</th>
-			<th st-skip-natural="true" st-sort="email" class="st-sort">Email</th>
-			<th st-skip-natural="true" st-sort="dates" class="st-sort">Birth date</th>
-			<th></th>
-		</tr>
-		<tr>
-			<th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr ng-repeat="contact in displayedCollection">
-			<td class="strong">{{contact.firstname}}</td>
-			<td class="strong">{{contact.lastname}}</td>
-			<td>{{contact.email}}</td>
-			<td>{{ getDate(contact.dates, 'BIRTHDATE')}}</td>
-			<td>
-				<button type="button" ng-click="removeContact(contact)" class="btn btn-sm btn-danger">
-					<i class="glyphicon glyphicon-remove-circle">
-					</i>
-				</button>
-			</td>
-		</tr>
-		</tbody>
-	</table>
 
 
-	<md-button class="md-raised" ng-click="toggleContactForm()">
-		<span class="glyphicon glyphicon-plus"></span>
-		New contact
-	</md-button>
 
+	<div layout="column" class="layout-content">
+
+
+
+
+
+
+		<div flex layout="column">
+
+			<section class="section-wrapper md-whiteframe-z1">
+
+				<md-toolbar class="section-toolbar md-default-theme">
+					<div class="md-toolbar-tools">
+					  <h3 class="ng-binding">Basic Usage</h3>
+					  <span flex=""></span>
+
+						<md-button class="md-icon-button launch" ng-click="toggleContactForm()">
+							<md-tooltip>
+          						Add new contact
+        					</md-tooltip>
+							<md-icon md-svg-icon="social:person-add"></md-icon>
+						</md-button>
+
+
+					</div>
+				  </md-toolbar>
+
+
+
+				<md-list layout="column" layout-padding  role="listitem">
+					<md-list-item
+					ng-repeat="contact in contactsList"
+					ng-click="goToPerson(contact, $event)">
+
+						<img alt="{{ contact.name }}" ng-src="{{ contact.img || '/images/avatar.png'}}" class="md-avatar">
+						<p>{{ contact.lastname }} {{ contact.firstname }}</p>
+					</md-list-item>
+				</md-list>
+			</section>
+		</div>
+	</div>
 
 	<md-sidenav class="md-sidenav-left md-whiteframe-z1" md-component-id="single-contact">
 		<ng-include src="'modules/contacts/views/single-contact.html'"></ng-include>
 	</md-sidenav>
+
 </div>
 
 
