@@ -21,7 +21,8 @@ angular
 		'contactsModule'
 	])
 
-	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+	.config(['$urlRouterProvider', '$stateProvider', '$mdIconProvider',
+	function($urlRouterProvider, $stateProvider, $mdIconProvider) {
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
@@ -31,6 +32,11 @@ angular
 				templateUrl: 'modules/main/views/settings.html',
 			});
 
+		$mdIconProvider
+			.iconSet('social', 'images/icons/social-icons.svg', 24)
+			.iconSet('device', 'images/icons/device-icons.svg', 24)
+			.iconSet('communication', 'images/icons/communication-icons.svg', 24)
+			.defaultIconSet('images/icons/core-icons.svg', 24);
 	}])
 
 	.run(['$rootScope', function($rootScope) {
