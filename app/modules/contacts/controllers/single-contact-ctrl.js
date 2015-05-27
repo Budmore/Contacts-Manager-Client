@@ -60,7 +60,7 @@ angular.module('contactsModule')
 
 		/**
 		 * Remove item from anny array. Find item in array with "indexOf" and
-		 * Find and splice it.
+		 * splice it.
 		 *
 		 * @param  {object} item
 		 * @param  {array} array
