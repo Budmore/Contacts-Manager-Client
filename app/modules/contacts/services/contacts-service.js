@@ -1,3 +1,4 @@
+
 'use strict';
 
 angular
@@ -46,7 +47,7 @@ angular
 		};
 
 		/**
-		 * Create contact
+		 * Create contact. Required contact._id
 		 * @param  {object} contact
 		 * @return {object} dfd Promise
 		 */
@@ -65,7 +66,7 @@ angular
 		};
 
 		/**
-		 * Update contact
+		 * Update contact. Required contact._id
 		 * @param  {object} contact
 		 * @return {object} dfd Promise
 		 */
@@ -85,7 +86,7 @@ angular
 
 
 		/**
-		 * Update contact
+		 * Remove contact. Required contact._id
 		 * @param  {object} contact
 		 * @return {object} dfd Promise
 		 */

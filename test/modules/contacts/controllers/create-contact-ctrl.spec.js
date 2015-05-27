@@ -3,10 +3,10 @@
 describe('contactsModule services: "CreateContactCtrl"', function () {
 
 	// load the controller's module
-	beforeEach(module('contactsClient'));
+	beforeEach(module('contactsModule'));
+	beforeEach(module('globalConfig'));
 
 	var $q,
-		MainCtrl,
 		scope,
 		contactsService;
 
@@ -17,7 +17,8 @@ describe('contactsModule services: "CreateContactCtrl"', function () {
 		contactsService = _contactsService_;
 
 		scope = $rootScope.$new();
-		MainCtrl = $controller('CreateContactCtrl', {
+
+		$controller('CreateContactCtrl', {
 			$scope: scope,
 			$rootScope: scope,
 			contactsService: contactsService

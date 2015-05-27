@@ -8,75 +8,93 @@
  * Controller of the contactsModule
  */
 angular.module('contactsModule')
-	.controller('ContactsListCtrl',['$rootScope', '$scope', function ($rootScope, $scope) {
-
-		// var someDate = new Date();
-		// var _contact = {
-		// 	firstname: 'Jakub',
-		// 	lastname: 'Mach',
-		// 	nickname: 'Budmore',
-		// 	notes: 'is Awesome!',
-		// 	email: 'j.mach@budmore.pl',
-		// 	url: 'http://budmore.pl',
-		// 	dates: [
-		// 		{
-		// 			type: 'BIRTHDATE',
-		// 			date: someDate,
-		// 			year: someDate.getFullYear(),
-		// 			month: someDate.getMonth(),
-		// 			day: someDate.getDate()
-		// 		}
-		// 	]
-		// };
-
-		var firstnames = ['Jakub', 'Feliks', 'Kuba', 'Budmore'];
-		var lastnames = ['Mach', 'Faivre', 'Frere', 'Eponge'];
-		var dates = ['1987-05-21', '1987-04-25', '1955-08-27', '1966-06-06'];
-
-		function generateRandomItem() {
-
-			var firstname = firstnames[Math.floor(Math.random() * 3)];
-			var lastname = lastnames[Math.floor(Math.random() * 3)];
-			var birthdate = dates[Math.floor(Math.random() * 3)];
+	.controller('ContactsListCtrl', ['$scope', 'contactsService', function ($scope, contactsService) {
 
 
-			var someDate = new Date(birthdate);
-			var setBirthdate = {
-				type: 'BIRTHDATE',
-				date: someDate,
-				year: someDate.getFullYear(),
-				month: someDate.getMonth(),
-				day: someDate.getDate()
-			};
+		$scope.contactsList = [];
 
-
-			return {
-				firstname: firstname,
-				lastname: lastname,
-				dates: [
-					setBirthdate
-				]
-			};
-		}
-
-
-
-		$scope.rowCollection = [];
-
-		var i = 1;
-		for (i; i < 5; i++) {
-			$scope.rowCollection.push(generateRandomItem());
-		}
-
-		$scope.displayedCollection = [].concat($scope.rowCollection);
-
-		//remove to the real data holder
-		$scope.removeItem = function removeItem(row) {
-			var index = $scope.rowCollection.indexOf(row);
-			if (index !== -1) {
-				$scope.rowCollection.splice(index, 1);
-			}
+		$scope.init = function() {
+			$scope.getContacts();
 		};
+
+		/**
+		 * Get all contacts (promise from service contactsService)
+		 * promise resolved (success) - render contact list at the view
+		 * promise rejected (error) - show error notification
+		 */
+		$scope.getContacts = function() {
+			$scope.isError = false;
+			$scope.showSpinner = true;
+
+			contactsService.getContacts().then(
+				function success(response) {
+					$scope.contactsList = response.data;
+					$scope.displayedCollection = [].concat($scope.contactsList);
+				}, function error() {
+					$scope.isError = true;
+				}
+			).finally(function(){
+				$scope.showSpinner = false;
+			});
+		};
+
+		/**
+		 * Update contact
+		 * promise resolved (success) - refresh contact in the contactsList
+		 * promise rejected (error) - show error notification
+		 */
+		$scope.updateContact = function(contact) {
+			if (!contact) {
+				return;
+			}
+
+			$scope.showSpinner = true;
+			$scope.isError = false;
+
+			contactsService.updateContact(contact).then(
+				function success() {
+					// @TODO: refresh contact in the contactsList
+				}, function error() {
+					$scope.isError = true;
+				}
+			).finally(function(){
+				$scope.showSpinner = false;
+			});
+		};
+
+		/**
+		 * Remove contact
+		 * promise resolved (success) - remove contact from the contactsList
+		 * promise rejected (error) - show error notification
+		 */
+		$scope.removeContact = function(contact) {
+			if (!contact) {
+				return;
+			}
+
+			$scope.showSpinner = true;
+			$scope.isError = false;
+
+			contactsService.removeContact(contact).then(
+				function success() {
+					var index = $scope.contactsList.indexOf(contact);
+					if (index !== -1) {
+						$scope.contactsList.splice(index, 1);
+					}
+
+				}, function error() {
+					$scope.isError = true;
+				}
+			).finally(function(){
+				$scope.showSpinner = false;
+			});
+		};
+
+
+
+
+
+
 
 
 

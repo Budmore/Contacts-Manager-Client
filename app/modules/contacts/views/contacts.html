@@ -1,6 +1,6 @@
-<div ng-controller="ContactsListCtrl">
+<div ng-controller="ContactsListCtrl" ng-init="init()">
 
-	<table st-table="contactsList" st-safe-src="rowCollection" class="table table-fixed table-minimalistic">
+	<table st-table="displayedCollection" st-safe-src="contactsList" class="table table-fixed table-minimalistic">
 		<thead>
 		<tr>
 			<th st-skip-natural="true" st-sort="firstname" class="st-sort">Firtsname</th>
@@ -14,13 +14,13 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr ng-repeat="row in contactsList">
-			<td class="strong">{{row.firstname}}</td>
-			<td class="strong">{{row.lastname}}</td>
-			<td>{{row.email}}</td>
-			<td>{{ getDate(row.dates, 'BIRTHDATE')}}</td>
+		<tr ng-repeat="contact in displayedCollection">
+			<td class="strong">{{contact.firstname}}</td>
+			<td class="strong">{{contact.lastname}}</td>
+			<td>{{contact.email}}</td>
+			<td>{{ getDate(contact.dates, 'BIRTHDATE')}}</td>
 			<td>
-				<button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+				<button type="button" ng-click="removeContact(contact)" class="btn btn-sm btn-danger">
 					<i class="glyphicon glyphicon-remove-circle">
 					</i>
 				</button>
