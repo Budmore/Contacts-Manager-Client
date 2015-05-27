@@ -8,9 +8,10 @@ angular.module('contactsModule')
 	.controller('SingleContactCtrl',[
 	'$rootScope',
 	'$scope',
+	'$mdToast',
 	'contactsService',
 
-	function ($rootScope, $scope, contactsService) {
+	function ($rootScope, $scope, $mdToast, contactsService) {
 
 		/**
 		 * Available dates type.
@@ -85,7 +86,18 @@ angular.module('contactsModule')
 
 			contactsService.createContact(contact).then(
 				function success() {
+
+					$mdToast.show(
+						$mdToast.simple()
+							.content('Contact created')
+							.position('top right')
+							.hideDelay(1500)
+					);
+
+
 					$scope.contact = angular.copy(_contact);
+
+
 				}, function error() {
 					$scope.isError = true;
 				}
@@ -94,8 +106,43 @@ angular.module('contactsModule')
 			});
 		};
 
+		/**
+		 * Update contact. Required contact._id
+		 * @param  {object} contact
+		 */
+		$scope.updateContact = function(contact) {
+			$scope.showSpinner = true;
+			$scope.isError = false;
 
 
+			contactsService.updateContact(contact).then(
+				function success() {
+					$mdToast.show(
+						$mdToast.simple()
+							.content('Updated successfully')
+							.position('top right')
+							.hideDelay(1500)
+					);
+				}, function error() {
+					$scope.isError = true;
+				}
+			).finally(function() {
+				$scope.showSpinner = false;
+			});
+		};
 
+		/**
+		 * Create or Update contact. Depending on whether contact has _id
+		 * @param  {object} contact
+		 */
+		$scope.saveContact = function(contact) {
+
+			if (contact._id) {
+				$scope.updateContact(contact);
+			} else {
+				$scope.createContact(contact);
+			}
+
+		};
 
 	}]);

@@ -24,7 +24,7 @@ angular
 			.state('create-contact', {
 				title: 'Create contact',
 				url: '/contacts/create',
-				templateUrl: 'modules/contacts/views/create-contact.html',
+				templateUrl: 'modules/contacts/views/single-contact.html',
 			});
 
 	}]);

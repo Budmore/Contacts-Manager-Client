@@ -5,6 +5,7 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 	// load the controller's module
 	beforeEach(module('contactsModule'));
 	beforeEach(module('globalConfig'));
+	beforeEach(module('ngMaterial'));
 
 	var $q,
 		scope,
