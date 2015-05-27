@@ -3,11 +3,12 @@
 angular
 	.module('contactsModule')
 	.factory('contactsResource', ['$resource', 'GLOBAL_SETTINGS', function($resource, GLOBAL_SETTINGS) {
+			var REQUEST_URL = GLOBAL_SETTINGS.BASE_URL + GLOBAL_SETTINGS.API_VERSION;
 
-			return $resource( GLOBAL_SETTINGS.BASE_URL + '/contacts/:action/:id',
+			return $resource( REQUEST_URL + '/contacts/:action/:id',
 				{
 					action: '@action',
-					id: '@id'
+					id: '@_id'
 				},
 				{
 

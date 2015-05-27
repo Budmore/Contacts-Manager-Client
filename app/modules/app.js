@@ -1,7 +1,6 @@
 'use strict';
 
 /**
- * @ngdoc overview
  * @name contactsClient
  * @description
  * # contactsClient
@@ -18,12 +17,9 @@ angular
 		'ui.router',
 		'smart-table',
 
+		'globalConfig',
 		'contactsModule'
 	])
-
-	.constant('GLOBAL_SETTINGS', {
-		BASE_URL: 'http://localhost:9010/api/v1',
-	})
 
 	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
 		$urlRouterProvider.otherwise('/');
@@ -33,16 +29,6 @@ angular
 				title: 'Settings',
 				url: '/settings',
 				templateUrl: 'modules/main/views/settings.html',
-			})
-			.state('contacts', {
-				title: 'Contacts',
-				url: '/contacts',
-				templateUrl: 'modules/contacts/views/contacts.html',
-			})
-			.state('create-contact', {
-				title: 'Create contact',
-				url: '/contacts/create',
-				templateUrl: 'modules/contacts/views/create-contact.html',
 			});
 
 	}])
