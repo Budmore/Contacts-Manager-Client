@@ -30,9 +30,15 @@
 	</table>
 
 
-	<md-button class="md-raised" ui-sref="create-contact" title="Create contact">
+	<md-button class="md-raised" ng-click="toggleContactForm()">
 		<span class="glyphicon glyphicon-plus"></span>
-		Create new contact
+		New contact
 	</md-button>
 
+
+	<md-sidenav class="md-sidenav-left md-whiteframe-z1" md-component-id="single-contact">
+		<ng-include src="'modules/contacts/views/single-contact.html'"></ng-include>
+	</md-sidenav>
 </div>
+
+

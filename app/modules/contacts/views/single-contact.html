@@ -1,11 +1,15 @@
 
-<md-content ng-controller="SingleContactCtrl">
+<section ng-controller="SingleContactCtrl" class="contact-form" layout-padding>
 	<form name="userForm" ng-submit="saveContact(contact)">
+
+		<div class="avatar">
+			<img src="/images/avatar.png" alt="Empty avatar">
+		</div>
 
 		<div layout layout-sm="column">
 			<md-input-container flex>
 				<label>Firstname</label>
-				<input ng-model="contact.firstname">
+				<input ng-model="contact.firstname" md-sidenav-focus>
 			</md-input-container>
 
 			<md-input-container flex>
@@ -15,28 +19,29 @@
 		</div>
 
 
-		<div layout layout-sm="column">
-			<md-input-container flex>
-				<label>Phone</label>
-				<input ng-model="contact.phone">
-			</md-input-container>
+		<div>
 
 			<md-input-container flex>
 				<label>Email</label>
 				<input type="email" ng-model="contact.email">
 			</md-input-container>
 		</div>
+<!-- 			<md-input-container flex>
+				<label>Phone</label>
+				<input ng-model="contact.phone">
+			</md-input-container> -->
 
-		<div >
-			Add new
-			<md-select ng-model="favoriteTopping" placeholder="date">
-				<md-option
-				ng-repeat="dateType in dateTypes"
-				ng-value="dateType.name"
-				ng-click="addDate(dateType.type, contact)">
-					{{dateType.name}}
-				</md-option>
-			</md-select>
+		<div>
+			<div layout="column" layout-align="center center" >
+				<md-select ng-model="dateTypeSelected" placeholder="Add new date">
+					<md-option
+					ng-repeat="dateType in dateTypes"
+					ng-value="dateType.name"
+					ng-click="addDate(dateType.type, contact)">
+						{{dateType.name}}
+					</md-option>
+				</md-select>
+			</div>
 
 			<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
 				<label>Date</label>
@@ -53,15 +58,14 @@
 		</div>
 
 
-		<section layout="row" layout-sm="column" layout-align="left center">
+		<footer layout="row" layout-sm="column" layout-align="center center">
 			<md-button class="md-raised md-primary">
-				<span class="glyphicon glyphicon-plus"></span>
 				<span ng-show="contact._id">Edit</span>
 				<span ng-show="!contact._id">Save</span>
 			</md-button>
-			<md-button ui-sref="contacts" title="Cancel and back to contacts list">
+			<md-button type="button" ng-click="close()">
 				Cancel
 			</md-button>
-		</section>
+		</footer>
 	</form>
-</md-content>
+</section>

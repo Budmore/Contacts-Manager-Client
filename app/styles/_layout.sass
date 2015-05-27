@@ -7,12 +7,21 @@
 body
   padding: 0
 
+img
+  max-width: 100%
+
 md-sidenav.sidebar-left
   width: 150px
   max-width: 150px
   min-width: 150px
+  z-index: $index-sidebar-left
 
-
+md-sidenav,
+md-sidenav.md-locked-open,
+md-sidenav.md-closed.md-locked-open-add-active
+  min-width: 0px !important
+  width: auto !important
+  max-width: none !important
 
 .navigation-menu
   padding: 0

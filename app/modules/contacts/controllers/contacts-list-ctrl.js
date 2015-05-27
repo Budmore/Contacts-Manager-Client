@@ -8,7 +8,12 @@
  * Controller of the contactsModule
  */
 angular.module('contactsModule')
-	.controller('ContactsListCtrl', ['$scope', 'contactsService', function ($scope, contactsService) {
+	.controller('ContactsListCtrl', [
+	'$scope',
+	'$mdUtil',
+	'$mdSidenav',
+	'contactsService',
+    function ($scope, $mdUtil, $mdSidenav, contactsService) {
 
 
 		$scope.contactsList = [];
@@ -94,9 +99,22 @@ angular.module('contactsModule')
 
 
 
+		/**
+		 * Build handler to open/close a SideNav; when animation finishes
+		 * report completion in console
+		 * @param {string} navID Element attribute id=""
+		 */
+		function buildToggler(navID) {
+			var debounceFn = $mdUtil.debounce(function(){
+				$mdSidenav(navID)
+					.toggle()
+					.then(function () {
+					});
+				},300);
+			return debounceFn;
+		}
 
-
-
+		$scope.toggleContactForm = buildToggler('single-contact');
 
 
 

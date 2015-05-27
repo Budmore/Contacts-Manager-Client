@@ -9,9 +9,9 @@ angular.module('contactsModule')
 	'$rootScope',
 	'$scope',
 	'$mdToast',
+	'$mdSidenav',
 	'contactsService',
-
-	function ($rootScope, $scope, $mdToast, contactsService) {
+	function ($rootScope, $scope, $mdToast, $mdSidenav, contactsService) {
 
 		/**
 		 * Available dates type.
@@ -143,6 +143,13 @@ angular.module('contactsModule')
 				$scope.createContact(contact);
 			}
 
+		};
+
+		$scope.close = function() {
+			$mdSidenav('single-contact').close()
+				.then(function() {
+					$scope.contact = angular.copy(_contact);
+				});
 		};
 
 	}]);
