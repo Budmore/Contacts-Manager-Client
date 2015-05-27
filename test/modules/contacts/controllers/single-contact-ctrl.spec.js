@@ -1,6 +1,6 @@
 'use strict';
 
-describe('contactsModule services: "CreateContactCtrl"', function () {
+describe('contactsModule services: "SingleContactCtrl"', function () {
 
 	// load the controller's module
 	beforeEach(module('contactsModule'));
@@ -18,7 +18,7 @@ describe('contactsModule services: "CreateContactCtrl"', function () {
 
 		scope = $rootScope.$new();
 
-		$controller('CreateContactCtrl', {
+		$controller('SingleContactCtrl', {
 			$scope: scope,
 			$rootScope: scope,
 			contactsService: contactsService

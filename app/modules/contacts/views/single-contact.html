@@ -1,5 +1,5 @@
 
-<md-content layout-padding ng-controller="CreateContactCtrl">
+<md-content ng-controller="SingleContactCtrl">
 	<!-- ng-submit="" -->
 	<form name="userForm" ng-submit="createContact(contact)">
 
@@ -57,7 +57,8 @@
 		<section layout="row" layout-sm="column" layout-align="left center">
 			<md-button class="md-raised md-primary">
 				<span class="glyphicon glyphicon-plus"></span>
-				Save new contact
+				<span ng-show="contact._id">Edit</span>
+				<span ng-show="!contact._id">Save</span>
 			</md-button>
 			<md-button ui-sref="contacts" title="Cancel and back to contacts list">
 				Cancel

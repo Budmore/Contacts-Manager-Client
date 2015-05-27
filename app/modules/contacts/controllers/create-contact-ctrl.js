@@ -5,7 +5,7 @@
  * @name contactsModule.controller:AddContactCtrl
  */
 angular.module('contactsModule')
-	.controller('CreateContactCtrl',[
+	.controller('SingleContactCtrl',[
 	'$rootScope',
 	'$scope',
 	'contactsService',
@@ -93,6 +93,8 @@ angular.module('contactsModule')
 				$scope.showSpinner = false;
 			});
 		};
+
+
 
 
 
