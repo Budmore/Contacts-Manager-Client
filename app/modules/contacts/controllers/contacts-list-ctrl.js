@@ -16,7 +16,7 @@ angular.module('contactsModule')
     function ($scope, $mdUtil, $mdSidenav, contactsService) {
 
 
-		$scope.contactsList = [];
+		$scope.contactsList = contactsService.contactsModel.getModel();
 
 		$scope.init = function() {
 			$scope.getContacts();
@@ -33,7 +33,8 @@ angular.module('contactsModule')
 
 			contactsService.getContacts().then(
 				function success(response) {
-					$scope.contactsList = response.data;
+
+					contactsService.contactsModel.setModel(response.data);
 				}, function error() {
 					$scope.isError = true;
 				}
@@ -42,29 +43,6 @@ angular.module('contactsModule')
 			});
 		};
 
-		/**
-		 * Update contact
-		 * promise resolved (success) - refresh contact in the contactsList
-		 * promise rejected (error) - show error notification
-		 */
-		$scope.updateContact = function(contact) {
-			if (!contact) {
-				return;
-			}
-
-			$scope.showSpinner = true;
-			$scope.isError = false;
-
-			contactsService.updateContact(contact).then(
-				function success() {
-					// @TODO: refresh contact in the contactsList
-				}, function error() {
-					$scope.isError = true;
-				}
-			).finally(function(){
-				$scope.showSpinner = false;
-			});
-		};
 
 		/**
 		 * Remove contact
@@ -81,11 +59,7 @@ angular.module('contactsModule')
 
 			contactsService.removeContact(contact).then(
 				function success() {
-					var index = $scope.contactsList.indexOf(contact);
-					if (index !== -1) {
-						$scope.contactsList.splice(index, 1);
-					}
-
+					contactsService.contactsModel.removeItemById(contact);
 				}, function error() {
 					$scope.isError = true;
 				}

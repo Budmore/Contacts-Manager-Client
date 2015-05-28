@@ -23,7 +23,15 @@
     "angular": false,
     "browser": false,
     "inject": false,
-    "_": true
+    "_": false,
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "before": false,
+    "after": false,
+    "it": false,
+    "xit": false,
+    "fit": false
   }
 }
 

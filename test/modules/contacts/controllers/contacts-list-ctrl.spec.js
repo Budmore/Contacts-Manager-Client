@@ -43,46 +43,19 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 
 	});
 
-	it('should update contact - success', function() {
-
-		var dfd = $q.defer();
-		spyOn(contactsService, 'updateContact').and.returnValue(dfd.promise);
-
-		var _contact = {};
-		scope.updateContact(_contact);
-
-		// Promise resolve - success
-		dfd.resolve();
-		scope.$digest();
-
-		expect(contactsService.updateContact).toHaveBeenCalledWith(_contact);
-		expect(scope.isError).toBe(false);
-	});
-
-	it('should update contact - error', function() {
-
-		var dfd = $q.defer();
-		spyOn(contactsService, 'updateContact').and.returnValue(dfd.promise);
-
-		var _contact = {};
-		scope.updateContact(_contact);
-
-		// Promise resolve - success
-		dfd.reject();
-		scope.$digest();
-
-		expect(contactsService.updateContact).toHaveBeenCalledWith(_contact);
-		expect(scope.isError).toBe(true);
-	});
-
-
 
 	it('should remove contact - success', function() {
 
 		var dfd = $q.defer();
 		spyOn(contactsService, 'removeContact').and.returnValue(dfd.promise);
+		spyOn(contactsService.contactsModel, 'removeItemById').and.callFake(function() {
+			return true;
+		});
 
-		var _contact = {};
+		var _contact = {
+			firstname: 'Goldberg'
+		};
+
 		scope.removeContact(_contact);
 
 		// Promise resolve - success
@@ -90,6 +63,7 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 		scope.$digest();
 
 		expect(contactsService.removeContact).toHaveBeenCalledWith(_contact);
+		expect(contactsService.contactsModel.removeItemById).toHaveBeenCalledWith(_contact);
 		expect(scope.isError).toBe(false);
 	});
 

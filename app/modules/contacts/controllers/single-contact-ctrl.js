@@ -80,7 +80,9 @@ angular.module('contactsModule')
 
 
 			contactsService.createContact(contact).then(
-				function success() {
+				function success(response) {
+
+					contactsService.contactsModel.addToModel(response);
 
 					$mdToast.show(
 						$mdToast.simple()
@@ -100,8 +102,13 @@ angular.module('contactsModule')
 			});
 		};
 
+
+
 		/**
 		 * Update contact. Required contact._id
+		 * promise resolved (success) - refresh contact in the contactsList
+		 * promise rejected (error) - show error notification
+		 *
 		 * @param  {object} contact
 		 */
 		$scope.updateContact = function(contact) {
@@ -110,7 +117,10 @@ angular.module('contactsModule')
 
 
 			contactsService.updateContact(contact).then(
-				function success() {
+				function success(response) {
+
+					contactsService.contactsModel.updateItemById(response);
+
 					$mdToast.show(
 						$mdToast.simple()
 							.content('Updated successfully')
@@ -141,6 +151,8 @@ angular.module('contactsModule')
 			}
 
 		};
+
+
 
 		/**
 		 * Close panel and clear the form. single-contact template

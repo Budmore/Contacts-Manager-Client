@@ -55,6 +55,16 @@ angular
 					model.data = newModel;
 					return;
 				},
+				/**
+				 * Push data to the model at the begining of the array (unshift)
+				 * @param {*} item
+				 */
+				addToModel: function(item) {
+					if (model.data.constructor === Array) {
+						model.data.unshift(item);
+					}
+					return;
+				},
 
 				/**
 				 * Update data in the model by replacing old object with new one.

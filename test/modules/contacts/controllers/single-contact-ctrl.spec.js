@@ -35,9 +35,11 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		var contactMocked = {};
 		var respondMocked = {};
 
-		spyOn(contactsService, 'createContact').and.returnValue(dfd.promise);
 		spyOn(scope, 'closePanel').and.callThrough();
-
+		spyOn(contactsService, 'createContact').and.returnValue(dfd.promise);
+		spyOn(contactsService.contactsModel, 'addToModel').and.callFake(function() {
+			return true;
+		});
 		scope.createContact(contactMocked);
 
 		expect(scope.showSpinner).toBe(true);
@@ -48,6 +50,7 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		scope.$digest();
 
 		expect(contactsService.createContact).toHaveBeenCalledWith(contactMocked);
+		expect(contactsService.contactsModel.addToModel).toHaveBeenCalledWith(respondMocked);
 		expect(scope.closePanel).toHaveBeenCalled();
 		expect(scope.showSpinner).toBe(false);
 	});
@@ -72,6 +75,46 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		expect(scope.isError).toBe(true);
 		expect(scope.showSpinner).toBe(false);
 	});
+
+	it('should update contact - success', function() {
+
+		var dfd = $q.defer();
+		spyOn(contactsService, 'updateContact').and.returnValue(dfd.promise);
+		spyOn(contactsService.contactsModel, 'updateItemById').and.callFake(function() {
+			return true;
+		});
+
+		var _contact = {};
+		var respondMocked = {};
+		scope.updateContact(_contact);
+
+		// Promise resolve - success
+		dfd.resolve(respondMocked);
+		scope.$digest();
+
+		expect(contactsService.updateContact).toHaveBeenCalledWith(_contact);
+		expect(contactsService.contactsModel.updateItemById).toHaveBeenCalledWith(respondMocked);
+		expect(scope.isError).toBe(false);
+	});
+
+	it('should update contact - error', function() {
+
+		var dfd = $q.defer();
+		spyOn(contactsService, 'updateContact').and.returnValue(dfd.promise);
+		var _contact = {
+			firstname: 'Whoopi'
+		};
+		scope.updateContact(_contact);
+
+		// Promise reject - error
+		dfd.reject();
+		scope.$digest();
+
+		expect(contactsService.updateContact).toHaveBeenCalledWith(_contact);
+		expect(scope.isError).toBe(true);
+	});
+
+
 
 	it('should remove item from array', function() {
 		var _array = ['1', 3, 'aa'];
