@@ -29,11 +29,7 @@ angular.module('contactsModule')
 		}];
 
 
-		var _emptyContact = {
-			dates: [{
-				type: 'BIRTHDATE'
-			}]
-		};
+
 
 
 

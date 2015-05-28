@@ -96,11 +96,14 @@ angular.module('contactsModule')
 
 
 
-
-
 		$scope.openPanel = function() {
 			$mdSidenav('single-contact').open();
-			$scope.contact = {dates:[]};
+
+			$scope.contact = {
+				dates: [{
+					type: 'BIRTHDATE'
+				}]
+			};
 		};
 
 		$scope.goToContact = function(contact) {

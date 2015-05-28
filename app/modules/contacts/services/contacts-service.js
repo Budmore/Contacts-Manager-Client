@@ -6,6 +6,7 @@ angular
 	.service('contactsService', ['$q', 'contactsResource', function ($q, contactsResource) {
 
 
+
 		/**
 		 * Loop over every date.
 		 * Replace eg. '1920-11-10T23:00:00.000Z' to JavaScript Date object
@@ -29,6 +30,74 @@ angular
 			return dates;
 		}
 
+
+
+		function ModelConstructor() {
+
+			var model = {
+				data: []
+			};
+
+			return {
+				/**
+				 * Getter - get private variable with refferance to the data
+				 * @return {Object}
+				 */
+				getModel: function() {
+					return model;
+				},
+
+				/**
+				 * Setter - update only model property (old refference still exists)
+				 * @param {*} newModel
+				 */
+				setModel: function(newModel) {
+					model.data = newModel;
+					return;
+				},
+
+				/**
+				 * Update data in the model by replacing old object with new one.
+				 * @param  {Object} item
+				 */
+				updateItemById: function(item) {
+					if (!item || !item._id) {
+						return;
+					}
+
+					var index;
+					index = _.findIndex(model.data, '_id', item._id );
+
+					if (index > -1) {
+						model.data.splice(index, 1, item);
+					}
+
+					return;
+				},
+
+				/**
+				 * Remove data from the model by "item._id"
+				 * @param  {Object} item
+				 */
+				removeItemById: function(item) {
+					if (!item || !item._id) {
+						return;
+					}
+
+					var index;
+					index = _.findIndex(model.data, '_id', item._id);
+
+					if (index > -1) {
+						model.data.splice(index, 1);
+					}
+
+					return;
+				}
+
+			};
+		}
+
+		this.contactsModel = new ModelConstructor();
 
 		/**
 		 * Get all contacts. Then loop over every contact and parse dates.

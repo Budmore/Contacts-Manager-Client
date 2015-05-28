@@ -31,6 +31,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-smart-table/dist/smart-table.js',
       'bower_components/momentjs/moment.js',
+      'bower_components/lodash/lodash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/modules/**/*.js',

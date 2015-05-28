@@ -27,6 +27,7 @@
     "after": true,
     "it": true,
     "fit": true,
-    "moment": true
+    "moment": true,
+    "_": true
   }
 }

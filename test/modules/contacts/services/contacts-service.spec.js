@@ -24,7 +24,6 @@ describe('contactsModule services:', function() {
 
 	describe('"contactsService"', function() {
 
-
 		it('should GET all contacts', function() {
 			$httpBackend.expectGET(REQUEST_URL + '/contacts').respond(200, {});
 			contactsService.getContacts().then(successCb, errorCb);
@@ -106,6 +105,83 @@ describe('contactsModule services:', function() {
 			expect(errorCb).toHaveBeenCalled();
 		});
 
+
+		it('should getter/setter data in the model', function() {
+			var someData, contactsModel;
+
+			someData = [{a: 1}];
+			contactsModel = contactsService.contactsModel.getModel();
+
+
+			contactsService.contactsModel.setModel(someData);
+
+			expect(contactsModel.data).toBe(someData);
+		});
+
+		it('should update object in the model', function() {
+			var contactsModel;
+			var oldData = [
+				{},
+				{
+					_id: '1a#21',
+					firstname: 'Lorean',
+					dates: []
+				},
+				{}
+			];
+
+
+			var newData = {
+				_id: '1a#21',
+				firstname: 'Jakub',
+				dates: [
+					{
+						type: 'BIRTHDATE',
+						date: new Date(1987, 10, 11)
+					}
+				]
+			};
+
+			// Set old data
+			contactsModel = contactsService.contactsModel.getModel();
+			contactsService.contactsModel.setModel(oldData);
+
+			// Update model
+			contactsService.contactsModel.updateItemById(newData);
+
+			// Expect
+			expect(contactsModel.data[1]).toBe(newData);
+
+		});
+
+		it('should remove object from model', function() {
+			var contactsModel;
+			var oldData = [
+				{},
+				{
+					_id: '1a#21',
+					firstname: 'Lorean',
+					dates: []
+				},
+				{}
+			];
+
+			var oldLenght = oldData.length;
+			var removeData = {
+				_id: '1a#21',
+			};
+
+			// Set old data
+			contactsModel = contactsService.contactsModel.getModel();
+			contactsService.contactsModel.setModel(oldData);
+
+			// Update model
+			contactsService.contactsModel.removeItemById(removeData);
+
+			// Expect
+			expect(contactsModel.data.length).toBe(oldLenght - 1);
+
+		});
 
 	});
 });
