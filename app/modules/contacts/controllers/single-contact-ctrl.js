@@ -29,13 +29,12 @@ angular.module('contactsModule')
 		}];
 
 
-		var _contact = {
+		var _emptyContact = {
 			dates: [{
 				type: 'BIRTHDATE'
 			}]
 		};
 
-		$scope.contact = angular.copy(_contact);
 
 
 
@@ -95,8 +94,7 @@ angular.module('contactsModule')
 					);
 
 
-					$scope.contact = angular.copy(_contact);
-
+					$scope.closePanel();
 
 				}, function error() {
 					$scope.isError = true;
@@ -123,6 +121,9 @@ angular.module('contactsModule')
 							.position('top right')
 							.hideDelay(1500)
 					);
+
+					$scope.closePanel();
+
 				}, function error() {
 					$scope.isError = true;
 				}
@@ -145,11 +146,13 @@ angular.module('contactsModule')
 
 		};
 
-		$scope.close = function() {
-			$mdSidenav('single-contact').close()
-				.then(function() {
-					$scope.contact = angular.copy(_contact);
-				});
+		/**
+		 * Close panel and clear the form. single-contact template
+		 */
+		$scope.closePanel = function() {
+			$mdSidenav('single-contact').close();
 		};
+
+
 
 	}]);

@@ -22,7 +22,11 @@
 					  <h3 class="ng-binding">Basic Usage</h3>
 					  <span flex=""></span>
 
-						<md-button class="md-icon-button launch" ng-click="toggleContactForm()">
+						<md-button
+						class="md-icon-button launch"
+						ng-click="openPanel()"
+						role="button"
+						aria-label="Add new contact">
 							<md-tooltip>
           						Add new contact
         					</md-tooltip>
@@ -38,7 +42,7 @@
 				<md-list layout="column" layout-padding  role="listitem">
 					<md-list-item
 					ng-repeat="contact in contactsList"
-					ng-click="goToPerson(contact, $event)">
+					ng-click="goToContact(contact, $event)">
 
 						<img alt="{{ contact.name }}" ng-src="{{ contact.img || '/images/avatar.png'}}" class="md-avatar">
 						<p>{{ contact.lastname }} {{ contact.firstname }}</p>

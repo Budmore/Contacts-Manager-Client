@@ -18,6 +18,15 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "moment": false,
+    "describe": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "before": true,
+    "after": true,
+    "it": true,
+    "fit": true,
+    "moment": true
   }
 }

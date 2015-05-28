@@ -36,6 +36,8 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		var respondMocked = {};
 
 		spyOn(contactsService, 'createContact').and.returnValue(dfd.promise);
+		spyOn(scope, 'closePanel').and.callThrough();
+
 		scope.createContact(contactMocked);
 
 		expect(scope.showSpinner).toBe(true);
@@ -46,7 +48,7 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		scope.$digest();
 
 		expect(contactsService.createContact).toHaveBeenCalledWith(contactMocked);
-		expect(scope.contact.firstname).toBeUndefined();
+		expect(scope.closePanel).toHaveBeenCalled();
 		expect(scope.showSpinner).toBe(false);
 	});
 

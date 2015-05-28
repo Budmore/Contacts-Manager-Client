@@ -34,7 +34,6 @@ angular.module('contactsModule')
 			contactsService.getContacts().then(
 				function success(response) {
 					$scope.contactsList = response.data;
-					$scope.displayedCollection = [].concat($scope.contactsList);
 				}, function error() {
 					$scope.isError = true;
 				}
@@ -99,26 +98,15 @@ angular.module('contactsModule')
 
 
 
-		/**
-		 * Build handler to open/close a SideNav; when animation finishes
-		 * report completion in console
-		 * @param {string} navID Element attribute id=""
-		 */
-		function buildToggler(navID) {
-			var debounceFn = $mdUtil.debounce(function(){
-				$mdSidenav(navID)
-					.toggle()
-					.then(function () {
-					});
-				}, 200);
-			return debounceFn;
-		}
+		$scope.openPanel = function() {
+			$mdSidenav('single-contact').open();
+			$scope.contact = {dates:[]};
+		};
 
-		$scope.toggleContactForm = buildToggler('single-contact');
+		$scope.goToContact = function(contact) {
+			$scope.contact = angular.copy(contact);
 
-
-		$scope.goToContact = function(contact, $event) {
-			$scope.selectedContact = angular.copy(contact);
+			$mdSidenav('single-contact').open();
 
 
 		};

@@ -5,16 +5,53 @@ angular
 	.module('contactsModule')
 	.service('contactsService', ['$q', 'contactsResource', function ($q, contactsResource) {
 
+
 		/**
-		 * Get all contacts
+		 * Loop over every date.
+		 * Replace eg. '1920-11-10T23:00:00.000Z' to JavaScript Date object
+		 *
+		 * @param  {Array} dates
+		 * @return {Array}
+		 */
+		function parseAllDates(dates) {
+			if (dates && dates.constructor === Array) {
+				dates.forEach(function(date) {
+
+					if ( date && moment(date.date).isValid()) {
+						date.date = new Date(date.date);
+					}
+
+				});
+			}
+
+
+
+			return dates;
+		}
+
+
+		/**
+		 * Get all contacts. Then loop over every contact and parse dates.
 		 * @return {object} dfd Promise
 		 */
 		this.getContacts = function() {
 			var dfd = $q.defer();
 
 			contactsResource.getContacts(
-				function getContactsSuccess(data) {
-					dfd.resolve(data);
+				function getContactsSuccess(response) {
+
+					if (response && response.data) {
+
+						response.data.forEach(function(contact){
+							if (contact.dates) {
+								parseAllDates(contact.dates);
+							}
+						});
+
+					}
+
+
+					dfd.resolve(response);
 				}, function getContactsError(error) {
 					dfd.reject(error);
 				}
@@ -22,6 +59,7 @@ angular
 
 			return dfd.promise;
 		};
+
 
 		/**
 		 * Get contact by id
