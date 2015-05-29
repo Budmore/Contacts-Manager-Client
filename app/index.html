@@ -23,7 +23,11 @@
 
 
 
-		<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="sidebar-left md-whiteframe-z1">
+		<md-sidenav
+		md-is-locked-open="$mdMedia('gt-sm')"
+		md-component-id="navigation-menu"
+		class="sidebar-left md-whiteframe-z1">
+
 			<md-toolbar layout="row">
 				<h1 class="md-toolbar-tools" layout-align-gt="center">
 					<a ui-sref="contacts" title="home page">
@@ -38,7 +42,7 @@
 						<md-button ui-sref="calendar" title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
 					</li>
 					<li ui-sref-active="active">
-						 <md-button ui-sref="contacts" title="contacts subpage"><span class="glyphicon glyphicon-list"></span> Contacts</md-button>
+						 <md-button ui-sref="contacts" title="contacts subpage"><md-icon md-svg-icon="social:people"></md-icon> Contacts</md-button>
 					</li>
 					<li ui-sref-active="active">
 						<md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
@@ -54,14 +58,18 @@
 
 		<div layout="column" role="main" flex>
 			<md-toolbar>
-				<button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-					<span class="visually-hidden">Menu</span>
-				</button>
-				<h1 class="md-toolbar-tools" ng-bind="pageTitle"></h1>
+				<div class="md-toolbar-tools">
+					<md-button hide-gt-sm ng-click="openNavigation()" class="md-icon-button" aria-label="Show navigation menu">
+						<md-icon md-svg-icon="images/icons/ic_menu_24px.svg"></md-icon>
+					</md-button>
+					<div flex layout="row" class="fill-height">
+						<h2 class="md-toolbar-tools" ng-bind="pageTitle"></h2>
+					</div>
+				</div>
 			</md-toolbar>
 
 
-			<md-content ui-view flex md-scroll-y class="md-default-theme">
+			<md-content ui-view md-scroll-y class="md-default-theme">
 			</md-content>
 
 		</div>

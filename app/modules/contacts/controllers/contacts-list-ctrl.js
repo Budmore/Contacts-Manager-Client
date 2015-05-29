@@ -33,7 +33,6 @@ angular.module('contactsModule')
 
 			contactsService.getContacts().then(
 				function success(response) {
-
 					contactsService.contactsModel.setModel(response.data);
 				}, function error() {
 					$scope.isError = true;

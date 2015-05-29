@@ -33,10 +33,10 @@ angular
 			});
 
 		$mdIconProvider
-			.iconSet('social', 'images/icons/social-icons.svg', 24)
-			.iconSet('device', 'images/icons/device-icons.svg', 24)
-			.iconSet('communication', 'images/icons/communication-icons.svg', 24)
-			.defaultIconSet('images/icons/core-icons.svg', 24);
+			.iconSet('social', 'images/icons/sets/social-icons.svg', 24)
+			.iconSet('device', 'images/icons/sets/device-icons.svg', 24)
+			.iconSet('communication', 'images/icons/sets/communication-icons.svg', 24)
+			.defaultIconSet('images/icons/sets/core-icons.svg', 24);
 	}])
 
 	.run(['$rootScope', function($rootScope) {

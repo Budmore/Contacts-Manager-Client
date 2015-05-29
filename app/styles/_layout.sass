@@ -32,3 +32,14 @@ md-sidenav.md-closed.md-locked-open-add-active
 .layout-content
   max-width: 864px
   padding: 16px
+
+.side-panel, .md-sidenav-backdrop
+  position: fixed !important
+
+.side-panel
+  top: 64px
+  left: auto
+
+md-backdrop ~ md-content
+  position: fixed
+  overflow: hidden

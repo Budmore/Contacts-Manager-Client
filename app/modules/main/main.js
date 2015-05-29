@@ -8,9 +8,18 @@
  * Controller of the contactsClient
  */
 angular.module('contactsClient')
-	.controller('MainCtrl', function () {
+	.controller('MainCtrl', [
+        '$scope',
+        '$mdSidenav',
+    function ($scope, $mdSidenav) {
 		// $rootScope.breadCrumps = {
 		// 	title: 'Contacts1'
 		// };
-	});
+		$scope.openNavigation = function() {
+			$mdSidenav('navigation-menu').toggle();
+		};
+
+
+	}]
+);
 
