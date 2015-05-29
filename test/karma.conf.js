@@ -29,7 +29,6 @@ module.exports = function(config) {
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/angular-smart-table/dist/smart-table.js',
       'bower_components/momentjs/moment.js',
       'bower_components/lodash/lodash.js',
       'bower_components/angular-mocks/angular-mocks.js',

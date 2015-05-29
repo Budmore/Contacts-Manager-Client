@@ -15,7 +15,6 @@ angular
 		'ngTouch',
 		'ngMaterial',
 		'ui.router',
-		'smart-table',
 
 		'globalConfig',
 		'contactsModule'
