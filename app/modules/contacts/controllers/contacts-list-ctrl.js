@@ -15,6 +15,9 @@ angular.module('contactsModule')
 	'contactsService',
     function ($scope, $mdUtil, $mdSidenav, contactsService) {
 
+    	$scope.filters = {
+    		show: false
+    	};
 
 		$scope.contactsList = contactsService.contactsModel.getModel();
 

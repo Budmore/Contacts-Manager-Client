@@ -11,20 +11,23 @@
 
 
 		<div flex layout="column">
-
-			<section class="section-wrapper md-whiteframe-z1">
+			<section ng-if="showSpinner" layout="row" layout-align="space-around">
+				<md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+			</section>
+			<section ng-if="!showSpinner" class="section-wrapper md-whiteframe-z1">
 
 				<md-toolbar class="section-toolbar md-default-theme">
 					<div class="md-toolbar-tools">
 					  <h3 class="ng-binding">Contacts List</h3>
-					  <span flex=""></span>
+						<span flex></span>
+
+
 
 						<md-button
 						type="button"
 						class="md-icon-button launch"
 						ng-click="openPanel()"
-						role="button"
-						aria-label="Add new contact">
+						>
 							<md-tooltip>
 								Add new contact
 							</md-tooltip>
@@ -32,13 +35,36 @@
 						</md-button>
 
 
+						<md-button
+						type="button"
+						class="md-icon-button launch"
+						ng-click="filters.show = !filters.show"
+						>
+							<md-tooltip>List filters</md-tooltip>
+							<md-icon md-svg-icon="images/icons/more_vert.svg"></md-icon>
+
+						</md-button>
+
 					</div>
 				</md-toolbar>
+
+				<div ng-if="filters.show" class="slide-in fade" layout-padding layout="column">
+
+					<md-input-container>
+						<label>
+							<md-icon md-font-icon="glyphicon glyphicon-search" class="icon-custom"></md-icon>
+							Find contact
+						</label>
+						<input type="search" ng-model="filters.searchQuery" aria-label="Find contact">
+					</md-input-container>
+
+				</div>
 
 
 				<md-list layout="column" layout-padding  role="listitem">
 					<md-list-item
-					ng-repeat="contact in contactsList.data"
+					class="fade"
+					ng-repeat="contact in contactsList.data | filter:filters.searchQuery"
 					ng-click="goToContact(contact, $event)">
 
 						<img alt="{{ contact.name }}" ng-src="{{ contact.img || '/images/avatar.png'}}" class="md-avatar">
