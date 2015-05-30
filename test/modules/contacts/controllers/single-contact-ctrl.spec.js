@@ -8,14 +8,17 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 	beforeEach(module('ngMaterial'));
 
 	var $q,
+		$mdToast,
 		scope,
-		contactsService;
+		contactsService,
+		ParentController;
 
 
 	// Initialize the controller and a mock scope
-	beforeEach(inject(function ($controller, $rootScope, _$q_, _contactsService_) {
+	beforeEach(inject(function ($controller, $rootScope, _$q_, _contactsService_, _$mdToast_) {
 		$q = _$q_;
 		contactsService = _contactsService_;
+		$mdToast = _$mdToast_;
 
 		scope = $rootScope.$new();
 
@@ -24,6 +27,13 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 			$rootScope: scope,
 			contactsService: contactsService
 		});
+
+		ParentController = function() {
+			return 	$controller('ContactsListCtrl', {
+				$scope: scope,
+				// contactsService: contactsService
+			});
+		}
 
 	}));
 
@@ -138,4 +148,58 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		expect(_model.dates[0].type).toBe(someType);
 	});
 
+	it('should aksBeforeRemove() - without $mdToast service', function() {
+		var _contact = {
+			firstname: 'Arni'
+		};
+
+		spyOn(scope, 'closePanel').and.callThrough();
+		spyOn(contactsService.contactsModel, 'removeItemById').and.callFake(function() {
+			return true;
+		});
+
+		scope.askBeforeRemove(_contact);
+
+		expect(scope.closePanel).toHaveBeenCalled();
+		expect(contactsService.contactsModel.removeItemById).toHaveBeenCalledWith(_contact);
+	});
+
+	it('should aksBeforeRemove() - with $mdToast restoreContact()', function() {
+		var _contact = {
+			firstname: 'Arni'
+		};
+		var dfd = $q.defer();
+		spyOn($mdToast, 'show').and.returnValue(dfd.promise);
+		spyOn(contactsService.contactsModel, 'addToModel').and.callFake(function() {
+			return true;
+		});
+
+		scope.askBeforeRemove(_contact);
+		dfd.resolve();
+		scope.$digest();
+
+		expect($mdToast.show).toHaveBeenCalled();
+		expect(contactsService.contactsModel.addToModel).toHaveBeenCalledWith(_contact);
+
+	});
+
+	it('should aksBeforeRemove() - with $mdToast removeContact()', function() {
+		ParentController();
+		var _contact = {
+			firstname: 'Arni'
+		};
+		var dfd = $q.defer();
+		spyOn($mdToast, 'show').and.returnValue(dfd.promise);
+		spyOn(scope, 'removeContact').and.callFake(function() {
+			return true;
+		});
+
+		scope.askBeforeRemove(_contact);
+		dfd.reject();
+		scope.$digest();
+
+
+		expect($mdToast.show).toHaveBeenCalled();
+		expect(scope.removeContact).toHaveBeenCalledWith(_contact);
+	});
 });

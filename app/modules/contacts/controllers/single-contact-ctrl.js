@@ -161,6 +161,38 @@ angular.module('contactsModule')
 			$mdSidenav('single-contact').close();
 		};
 
+		/**
+		 * Remove contact from model (not from DB). Display toast with "Undo"
+		 * option. User has 5sec to cancel remove action. After this time remove
+		 * contact from DB.
+		 *
+		 * @param {object} contact
+		 */
+		$scope.askBeforeRemove = function(contact) {
+			$scope.closePanel();
+
+			var toast = $mdToast.simple()
+				.content('The contact has been removed.')
+				.position('top right')
+				.hideDelay(5000)
+				.action('Undo?')
+				.highlightAction(true)
+
+
+			contactsService.contactsModel.removeItemById(contact);
+
+
+			$mdToast.show(toast).then(
+				function restoreContact() {
+					contactsService.contactsModel.addToModel(contact);
+				}, function removeContact() {
+					$scope.removeContact(contact)
+				}
+			);
+
+
+		}
+
 
 
 	}]);

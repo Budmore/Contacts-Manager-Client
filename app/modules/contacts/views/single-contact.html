@@ -2,7 +2,7 @@
 <section ng-controller="SingleContactCtrl" class="contact-form" layout-padding>
 	<form name="userForm" ng-submit="saveContact(contact)">
 
-		<md-button type="button" class="md-icon-button close">
+		<md-button type="button" class="md-icon-button close" ng-click="askBeforeRemove(contact)">
 			<md-icon md-font-icon="glyphicon glyphicon-trash"></md-icon>
 			<md-tooltip> Remove this contact</md-tooltip>
 		</md-button>
