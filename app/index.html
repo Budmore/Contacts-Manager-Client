@@ -15,8 +15,8 @@
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 	</head>
-	<body layout="row" ng-controller="MainCtrl">
-		<!--[if lt IE 7]>
+	<body layout="row" ng-controller="RootCtrl">
+		<!--[if lt IE 9]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
@@ -41,13 +41,17 @@
 
 				<ul class="navigation-menu">
 					<li>
-						<md-button ui-sref="calendar" title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
+						<!-- ui-sref="calendar" -->
+						<md-button title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
 					</li>
 					<li ui-sref-active="active">
 						 <md-button ui-sref="contacts" title="contacts subpage"><md-icon md-svg-icon="social:people"></md-icon> Contacts</md-button>
 					</li>
 					<li ui-sref-active="active">
 						<md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
+					</li>
+					<li ui-sref-active="active">
+						<md-button ui-sref="todo"  title="settings subpage"><span class="glyphicon glyphicon-list"></span> ToDo</md-button>
 					</li>
 				</ul>
 
@@ -99,15 +103,15 @@
 		<script src="modules/app.js"></script>
 		<script src="modules/global-config.js"></script>
 
-		<!-- Module: Main -->
-		<script src="modules/main/main.js"></script>
-		<script src="modules/main/about.js"></script>
-
 		<!-- Module: Contacts -->
 		<script src="modules/contacts/contacts-module.js"></script>
 		<script src="modules/contacts/controllers/contacts-list-ctrl.js"></script>
 		<script src="modules/contacts/controllers/single-contact-ctrl.js"></script>
 		<script src="modules/contacts/services/contacts-service.js"></script>
 		<script src="modules/contacts/services/contacts-resource.js"></script>
+
+		<!-- Module: General -->
+		<script src="modules/general/general-module.js"></script>
+		<script src="modules/general/controllers/root-ctrl.js"></script>
 </body>
 </html>

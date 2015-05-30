@@ -1,19 +1,21 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: RootCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('contactsClient'));
+  // beforeEach(module('contactsClient'));
+  beforeEach(module('generalModule'));
+  // beforeEach(module('ngMaterial'));
 
-  var MainCtrl,
+  var RootCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-    });
+    // RootCtrl = $controller('RootCtrl', {
+    //   $scope: scope
+    // });
   }));
 
   it('should pass', function () {

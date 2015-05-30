@@ -17,19 +17,13 @@ angular
 		'ui.router',
 
 		'globalConfig',
-		'contactsModule'
+		'contactsModule',
+		'generalModule'
 	])
 
-	.config(['$urlRouterProvider', '$stateProvider', '$mdIconProvider',
-	function($urlRouterProvider, $stateProvider, $mdIconProvider) {
+	.config(['$urlRouterProvider', '$mdIconProvider',
+	function($urlRouterProvider, $mdIconProvider) {
 		$urlRouterProvider.otherwise('/');
-
-		$stateProvider
-			.state('settings', {
-				title: 'Settings',
-				url: '/settings',
-				templateUrl: 'modules/main/views/settings.html',
-			});
 
 		$mdIconProvider
 			.iconSet('social', 'images/icons/sets/social-icons.svg', 24)
