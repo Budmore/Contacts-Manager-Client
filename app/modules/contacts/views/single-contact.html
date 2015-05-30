@@ -2,6 +2,11 @@
 <section ng-controller="SingleContactCtrl" class="contact-form" layout-padding>
 	<form name="userForm" ng-submit="saveContact(contact)">
 
+		<md-button type="button" class="md-icon-button close">
+			<md-icon md-font-icon="glyphicon glyphicon-trash"></md-icon>
+			<md-tooltip> Remove this contact</md-tooltip>
+		</md-button>
+
 		<div class="avatar">
 			<img src="/images/avatar.png" alt="Empty avatar">
 		</div>
@@ -26,10 +31,6 @@
 				<input type="email" ng-model="contact.email">
 			</md-input-container>
 		</div>
-<!-- 			<md-input-container flex>
-				<label>Phone</label>
-				<input ng-model="contact.phone">
-			</md-input-container> -->
 
 		<div>
 			<div layout="column" layout-align="center center" >
@@ -45,12 +46,14 @@
 
 			<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
 				<label>Date</label>
-				<input type="date" ng-model="date.date">
+				<input type="date" ng-model="date.date" required>
 				<div class="meta">
-					<button type="button" ng-click="removeItemFromArray(date, contact.dates)" class="btn btn-sm btn-danger">
-						<i class="glyphicon glyphicon-trash">
-						</i>
-					</button>
+					<md-button
+					type="button"
+					ng-click="removeItemFromArray(date, contact.dates)"
+					class="md-icon-button close">
+						&times;
+					</md-button>
 				</div>
 
 			</md-input-container>
@@ -59,12 +62,12 @@
 
 
 		<footer layout="row" layout-sm="column" layout-align="center center">
+			<md-button type="button" ng-click="closePanel()">
+				Cancel
+			</md-button>
 			<md-button class="md-raised md-primary">
 				<span ng-show="contact._id">Edit</span>
 				<span ng-show="!contact._id">Save</span>
-			</md-button>
-			<md-button type="button" ng-click="closePanel()">
-				Cancel
 			</md-button>
 		</footer>
 	</form>
