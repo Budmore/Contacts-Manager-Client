@@ -17,18 +17,7 @@ angular.module('contactsModule')
 		 * Available dates type.
 		 * @type {Array}
 		 */
-		$scope.dateTypes = [{
-			name: 'Birthdate',
-			type: 'BIRTHDATE'
-		},{
-			name: 'Namedate',
-			type: 'NAMEDATE'
-		},{
-			name: 'Event',
-			type: 'EVENT'
-		}];
-
-
+		$scope.dateTypes = contactsService.dateTypes;
 
 
 

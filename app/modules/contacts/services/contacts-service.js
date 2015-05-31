@@ -271,4 +271,20 @@ angular
 			}
 
 		}
+
+		/**
+		 * Available dates type.
+		 * @type {Array}
+		 */
+		this.dateTypes = [{
+			name: 'Birthday',
+			type: 'BIRTHDATE'
+		},{
+			name: 'Nameday',
+			type: 'NAMEDATE'
+		},{
+			name: 'Event',
+			type: 'EVENT'
+		}];
+
 	}]);
