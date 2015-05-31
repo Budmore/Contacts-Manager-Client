@@ -11,10 +11,7 @@
 
 
 		<div flex layout="column">
-			<section ng-if="showSpinner" layout="row" layout-align="space-around">
-				<md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
-			</section>
-			<section ng-if="!showSpinner" class="section-wrapper md-whiteframe-z1">
+			<section class="section-wrapper md-whiteframe-z1">
 
 				<md-toolbar class="section-toolbar md-default-theme">
 					<div class="md-toolbar-tools">
@@ -69,7 +66,7 @@
 				</div>
 
 
-				<md-list layout="column" layout-padding  role="listitem">
+				<md-list ng-if="!showSpinner" layout="column" layout-padding  role="listitem">
 					<md-list-item
 					class="fade"
 					ng-repeat="contact in contactsList.data | filter:filters.searchQuery"
@@ -84,9 +81,11 @@
 					</md-list-item>
 				</md-list>
 
+				<div ng-if="showSpinner" layout="row" layout-align="center center" style="min-height: 250px">
+					<md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+				</div>
 
-
-				<p ng-if="!contactsList.data.length" layout="row" layout-align="center center" style="min-height: 250px">
+				<div ng-if="!contactsList.data.length" layout="row" layout-align="center center" style="min-height: 250px">
 
 					<md-button
 					type="button"
@@ -97,7 +96,7 @@
 						<md-icon md-svg-icon="social:person-add"></md-icon>
 						Add contact
 					</md-button>
-				</p>
+				</div>
 
 			</section>
 		</div>
