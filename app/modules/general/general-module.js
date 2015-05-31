@@ -1,10 +1,12 @@
 /**
  * General module with common code.
  */
+
 angular
 	.module('generalModule', [
+		'ngResource',
 		'ui.router',
-		'ngMaterial',
+		'ngMaterial'
 	])
 
 	.config(['$stateProvider',

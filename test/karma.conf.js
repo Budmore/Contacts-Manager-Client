@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/lodash/lodash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+      'app/modules/general/general-module.js',
       'app/modules/**/*.js',
       'test/**/*.js'
     ],
