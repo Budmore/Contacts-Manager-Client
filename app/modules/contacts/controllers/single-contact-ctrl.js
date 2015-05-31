@@ -18,13 +18,13 @@ angular.module('contactsModule')
 		 * @type {Array}
 		 */
 		$scope.dateTypes = [{
-			name: 'birthdate',
+			name: 'Birthdate',
 			type: 'BIRTHDATE'
 		},{
-			name: 'namedate',
+			name: 'Namedate',
 			type: 'NAMEDATE'
 		},{
-			name: 'event',
+			name: 'Event',
 			type: 'EVENT'
 		}];
 

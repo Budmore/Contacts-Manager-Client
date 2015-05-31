@@ -83,4 +83,21 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 		expect(scope.isError).toBe(true);
 	});
 
+	it('should sortByType()', function() {
+
+		spyOn(contactsService, 'upcomingDates').and.callThrough();
+		spyOn(contactsService.contactsModel, 'getModel').and.callFake(function() {
+			return {
+				data: []
+			};
+		});
+
+		scope.sortByType()
+
+		expect(contactsService.contactsModel.getModel).toHaveBeenCalled();
+		expect(contactsService.upcomingDates).toHaveBeenCalled();
+
+
+	});
+
 });

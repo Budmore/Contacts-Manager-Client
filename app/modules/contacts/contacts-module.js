@@ -1,9 +1,5 @@
 /**
- * @name contactsClient
- * @description
- * # contactsClient
- *
- * Contacts module. Manage all your contacts. CRUD contacts
+ * Contacts module. Manage all your contacts (CRUD)
  */
 
 angular
@@ -12,7 +8,8 @@ angular
 		'ui.router'
 	])
 
-	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
+	.config(['$urlRouterProvider', '$stateProvider',
+	function($urlRouterProvider, $stateProvider) {
 		'use strict';
 
 		$stateProvider

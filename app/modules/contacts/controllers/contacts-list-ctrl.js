@@ -71,7 +71,9 @@ angular.module('contactsModule')
 		};
 
 
-
+		/**
+		 * Open panel with empty contact form
+		 */
 		$scope.openPanel = function() {
 			$mdSidenav('single-contact').open();
 
@@ -82,12 +84,32 @@ angular.module('contactsModule')
 			};
 		};
 
+		/**
+		 * Open panel with contact form
+		 * @param  {object} contact
+		 */
 		$scope.goToContact = function(contact) {
 			$scope.contact = angular.copy(contact);
-
 			$mdSidenav('single-contact').open();
-
-
 		};
+
+
+
+		$scope.sortByType = function(type) {
+			var model = contactsService.contactsModel.getModel();
+			var dateOfReference = new Date();
+
+			switch(type) {
+				case 'UPCOMING_DATE':
+				    model.data.sort(contactsService.upcomingDates(dateOfReference));
+					break;
+
+				default:
+					model.data.sort(contactsService.upcomingDates(dateOfReference));
+
+			}
+
+		}
+
 
 	}]);

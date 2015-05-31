@@ -183,5 +183,39 @@ describe('contactsModule services:', function() {
 
 		});
 
+
+		it('should upcomingDates() - sort array by upcoming dates', function() {
+			var may = new Date(2005, 4, 31);
+			var august = new Date(2015, 7, 11);
+			var december = new Date(1995, 11, 24);
+			var february = new Date(2001, 1, 1);
+
+			var contacts = [{
+				dates: [{
+					date: december
+				}]
+			}, {
+				dates: [{
+					date: february
+				}]
+			}, {
+				dates: [{
+					date: may
+				}]
+			}, {
+				dates: [{
+					date: august
+				}]
+			}];
+
+			var referenceDate = new Date(2015, 4, 31);
+			contacts.sort(contactsService.upcomingDates(referenceDate));
+
+			expect(contacts[0].dates[0].date).toBe(may);
+			expect(contacts[1].dates[0].date).toBe(august);
+			expect(contacts[2].dates[0].date).toBe(december);
+			expect(contacts[3].dates[0].date).toBe(february);
+
+		});
 	});
 });

@@ -221,4 +221,54 @@ angular
 			return dfd.promise;
 		};
 
+		/**
+		 * Custom Sort function. Used to sort contacts by closest upcoming date
+		 * Atention!: I assumed that the "contact.dates" are already sorted.
+		 *
+		 * @param  {Date} dateOfReference The point in time relative to which contacts are sorted
+		 *
+		 * @param  {Object} contactA
+		 * @param  {Object} contactB
+		 * @return {Number} array index position (-1, 0, 1)
+		 */
+		this.upcomingDates = function(dateOfReference) {
+
+
+			return function(contactA, contactB) {
+
+				if(!contactA || !contactB) {
+					return 0;
+				}
+
+				if(!contactA.dates[0] || !contactB.dates[0]) {
+					return;
+				}
+
+
+				var today = dateOfReference || new Date();
+				today.setHours(0,0,0,0);
+				var todayMonth = today.getMonth();
+
+
+				var firstDate = new Date(contactA.dates[0].date);
+				var secondDate = new Date(contactB.dates[0].date);
+
+				firstDate.setFullYear(today.getFullYear());
+				secondDate.setFullYear(today.getFullYear());
+
+
+				if (firstDate < today) {
+					firstDate.setFullYear(today.getFullYear() + 1);
+				}
+
+				if (secondDate < today) {
+					secondDate.setFullYear(today.getFullYear() + 1);
+				}
+
+
+				return firstDate - secondDate;
+
+			}
+
+		}
 	}]);
