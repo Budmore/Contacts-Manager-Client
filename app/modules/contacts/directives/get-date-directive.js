@@ -1,5 +1,5 @@
 angular.module('contactsModule')
-	.directive('getDate', ['contactsService', function(contactsService) {
+	.directive('getDate', function() {
 
 		var today = new Date();
 		today.setHours(0,0,0,0);
@@ -48,4 +48,4 @@ angular.module('contactsModule')
 			}
 		}
 
-	}]);
+	});
