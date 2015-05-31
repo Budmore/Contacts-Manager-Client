@@ -37,6 +37,7 @@ angular.module('contactsModule')
 			contactsService.getContacts().then(
 				function success(response) {
 					contactsService.contactsModel.setModel(response.data);
+					$scope.sortByType();
 				}, function error() {
 					$scope.isError = true;
 				}
