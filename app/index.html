@@ -20,8 +20,15 @@
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
+		<section ng-if="!isLogged" flex class="height-100">
+			<login-form></login-form>
+		</section>
+
+
+
 
 		<md-sidenav
+		ng-if="isLogged && pageLoaded"
 		md-is-locked-open="$mdMedia('gt-sm')"
 		md-component-id="navigation-menu"
 		class="sidebar-left md-whiteframe-z2">
@@ -41,7 +48,6 @@
 
 				<ul class="navigation-menu">
 					<li>
-						<!-- ui-sref="calendar" -->
 						<md-button title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
 					</li>
 					<li ui-sref-active="active">
@@ -62,7 +68,7 @@
 
 
 
-		<div layout="column" role="main" flex>
+		<div ng-if="isLogged && pageLoaded" layout="column" role="main" flex>
 			<md-toolbar>
 				<div class="md-toolbar-tools">
 					<md-button hide-gt-sm ng-click="openNavigation()" class="md-icon-button" aria-label="Show navigation menu">
@@ -107,6 +113,7 @@
 		<script src="modules/general/general-module.js"></script>
 		<script src="modules/general/controllers/root-ctrl.js"></script>
 		<script src="modules/general/controllers/settings-ctrl.js"></script>
+		<script src="modules/general/directives/login-form/login-form.js"></script>
 
 		<!-- Module: Contacts -->
 		<script src="modules/contacts/contacts-module.js"></script>

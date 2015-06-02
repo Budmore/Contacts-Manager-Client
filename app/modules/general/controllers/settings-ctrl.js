@@ -25,7 +25,7 @@ angular.module('generalModule')
 		$scope.revert = function() {
 			var temp = angular.copy(userCopy);
 			angular.extend($scope.user, temp);
-		}
+		};
 
 
 
@@ -33,7 +33,7 @@ angular.module('generalModule')
 			user.emailNotifications = validEmails(user.emailNotifications);
 
 			userCopy = angular.copy($scope.user);
-		}
+		};
 
 		function validEmails(emails) {
 			var result;
@@ -43,7 +43,7 @@ angular.module('generalModule')
 				return regEx.test(email);
 			});
 
-			return result
+			return result;
 		}
 
 	}]
