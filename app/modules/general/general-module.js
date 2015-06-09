@@ -24,11 +24,5 @@ angular
 				url: '/todo',
 				templateUrl: 'modules/general/views/todo.html',
 			});
-	}])
-	.run(['$rootScope', function($rootScope) {
-		'use strict';
-
-		$rootScope.pageLoaded = true;
-		$rootScope.isLogged = false;
-
 	}]);
+

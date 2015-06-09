@@ -456,7 +456,7 @@ module.exports = function (grunt) {
     'karma'
   ]);
   grunt.registerTask('test-tdd', [
-    'clean:server',
+    // 'clean:server',
     'wiredep',
     // 'concurrent:test',
     // 'autoprefixer',
