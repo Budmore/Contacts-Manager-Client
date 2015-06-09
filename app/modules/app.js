@@ -17,6 +17,7 @@ angular
 		'ui.router',
 
 		'globalConfig',
+		'authModule',
 		'contactsModule',
 		'generalModule'
 	])
