@@ -1,9 +1,11 @@
-describe('contactsModule services:', function() {
+describe('authModule services:', function() {
 	'use strict';
 	var $httpBackend, authService, sessionService, successCb, errorCb, REQUEST_URL;
 
-	beforeEach(module('authModule'));
-	beforeEach(module('globalConfig'));
+	beforeEach(function() {
+		angular.mock.module('authModule');
+		angular.mock.module('globalConfig');
+	});
 
 	beforeEach(inject(function($injector) {
 		var GLOBAL_SETTINGS = $injector.get('GLOBAL_SETTINGS');
@@ -24,6 +26,8 @@ describe('contactsModule services:', function() {
 
 
 	describe('"authService"', function() {
+
+
 
 		it('should login() - 1', function() {
 			$httpBackend.expectPOST(REQUEST_URL + '/auth/login').respond(200, {});
@@ -66,6 +70,8 @@ describe('contactsModule services:', function() {
 			expect(sessionService.setSession).not.toHaveBeenCalled();
 
 		});
+
+
 
 		it('should register() - 1', function() {
 			var mocked = {
@@ -121,6 +127,8 @@ describe('contactsModule services:', function() {
 			expect(sessionService.setSession).not.toHaveBeenCalled();
 
 		});
+
+
 
 		it('should checkToken() - 1 ', function() {
 			$httpBackend.expectGET(REQUEST_URL + '/auth/me').respond(200, {});

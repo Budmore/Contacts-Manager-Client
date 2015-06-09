@@ -1,9 +1,11 @@
-describe('contactsModule services:', function() {
+describe('authModule services:', function() {
 	'use strict';
 	var $http, $httpBackend, authService, sessionService, successCb, errorCb, REQUEST_URL;
 
-	beforeEach(module('authModule'));
-	beforeEach(module('globalConfig'));
+	beforeEach(function() {
+		angular.mock.module('authModule');
+		angular.mock.module('globalConfig');
+	});
 
 	beforeEach(inject(function($injector) {
 		var GLOBAL_SETTINGS = $injector.get('GLOBAL_SETTINGS');
@@ -26,6 +28,9 @@ describe('contactsModule services:', function() {
 
 	describe('"sessionService"', function() {
 
+
+
+
 		it('should getSession() - 1', function() {
 			var session = sessionService.getSession();
 			expect(session.isLogged).toBe(false);
@@ -41,6 +46,9 @@ describe('contactsModule services:', function() {
 
 			expect(session.isLogged).toBe(true);
 		});
+
+
+
 
 		it('should setSession()', function() {
 			var _token = 'asW32#as3';
@@ -62,6 +70,9 @@ describe('contactsModule services:', function() {
 			expect(sessionService.clearHeaders).toHaveBeenCalled();
 		});
 
+
+
+
 		it('should setHeaders()', function() {
 			var _token = '123@!as3';
 			sessionService.setHeaders(_token);
@@ -73,6 +84,31 @@ describe('contactsModule services:', function() {
 			sessionService.clearHeaders();
 			expect($http.defaults.headers.common['x-access-token']).toBeUndefined();
 		});
+
+
+
+
+		it('should checkSession() - 1 - with token', function() {
+			var _token = 'asD1da31a';
+			spyOn(localStorage, 'getItem').and.returnValue(_token);
+			spyOn(sessionService, 'setHeaders');
+
+			var result = sessionService.checkSession();
+
+			expect(localStorage.getItem).toHaveBeenCalledWith('token');
+			expect(sessionService.setHeaders).toHaveBeenCalledWith(_token);
+			expect(result.token).toBe(_token);
+		});
+
+		it('should checkSession() - 2 - without token', function() {
+			spyOn(localStorage, 'getItem');
+
+			var result = sessionService.checkSession();
+
+			expect(localStorage.getItem).toHaveBeenCalledWith('token');
+			expect(result.token).toBe(false);
+		});
+
 
 
 	});

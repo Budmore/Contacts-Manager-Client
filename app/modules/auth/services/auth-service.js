@@ -39,6 +39,7 @@ angular
 		};
 
 
+
 		/**
 		 * Register user
 		 * On success store token in to the localStorage.
@@ -65,6 +66,8 @@ angular
 			return dfd.promise;
 		};
 
+
+
 		/**
 		 * Check is token valid, on error clear session.
 		 *
@@ -89,7 +92,6 @@ angular
 
 			return dfd.promise;
 		};
-
 
 
 	}]);

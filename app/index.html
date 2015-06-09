@@ -28,7 +28,7 @@
 
 
 		<md-sidenav
-		ng-if="isLogged && pageLoaded"
+		ng-if="isLogged && appReady"
 		md-is-locked-open="$mdMedia('gt-sm')"
 		md-component-id="navigation-menu"
 		class="sidebar-left md-whiteframe-z2">
@@ -68,7 +68,7 @@
 
 
 
-		<div ng-if="isLogged && pageLoaded" layout="column" role="main" flex>
+		<div ng-if="isLogged && appReady" layout="column" role="main" flex>
 			<md-toolbar>
 				<div class="md-toolbar-tools">
 					<md-button hide-gt-sm ng-click="openNavigation()" class="md-icon-button" aria-label="Show navigation menu">

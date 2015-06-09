@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * General module with common code.
  */
@@ -10,7 +12,6 @@ angular
 
 	.config(['$stateProvider',
 	function($stateProvider) {
-		'use strict';
 
 		$stateProvider
 			.state('login', {
@@ -23,11 +24,39 @@ angular
 			// 	url: '/todo',
 			// 	templateUrl: 'modules/general/views/todo.html',
 			// });
-	}])
-	.run(['$rootScope', function($rootScope) {
-		'use strict';
+	}]);
+/*
+	.run([
+	'$rootScope',
+	'sessionService',
+	'authService',
+	function($rootScope, sessionService, authService) {
 
-		$rootScope.pageLoaded = true;
-		$rootScope.isLogged = false;
+		$rootScope.appReady = false;
+		$rootScope.isLogged = sessionService.getSession().isLogged;
+
+		var hasToken = sessionService.checkSession();
+		console.log(hasToken);
+		if (hasToken && hasToken.token) {
+
+			authService.checkToken().then(
+				function checkTokenSuccess() {
+
+					sessionService.setSession(hasToken.token);
+
+				}, function checkTokenError() {
+
+					sessionService.clearSession();
+
+				}
+			).finally(function() {
+				$rootScope.appReady = true;
+			});
+
+		}
+
 
 	}]);
+*/
+
+

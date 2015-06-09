@@ -54,6 +54,28 @@ angular
 
 
 		/**
+		 * Check user session. If token exists setup $http headers
+		 *
+		 * @return {Object} result
+		 */
+		this.checkSession = function() {
+			var result = {
+				token: false
+			};
+
+			var token = localStorage.getItem('token');
+
+			if (token) {
+				self.setHeaders(token);
+				result.token = token;
+			}
+
+			return result;
+		};
+
+
+
+		/**
 		 * Set token as a $http header ('x-access-token').
 		 * @param {String} token
 		 */
