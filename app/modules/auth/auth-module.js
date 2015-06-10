@@ -8,6 +8,7 @@ angular
 	.module('authModule', [
 		'ngResource',
 		'ui.router',
+		'authModule.services'
 	])
 
 	.config(['$stateProvider',
@@ -24,8 +25,8 @@ angular
 			// 	url: '/todo',
 			// 	templateUrl: 'modules/general/views/todo.html',
 			// });
-	}]);
-/*
+	}])
+
 	.run([
 	'$rootScope',
 	'sessionService',
@@ -36,7 +37,7 @@ angular
 		$rootScope.isLogged = sessionService.getSession().isLogged;
 
 		var hasToken = sessionService.checkSession();
-		console.log(hasToken);
+
 		if (hasToken && hasToken.token) {
 
 			authService.checkToken().then(
@@ -57,6 +58,6 @@ angular
 
 
 	}]);
-*/
+
 
 

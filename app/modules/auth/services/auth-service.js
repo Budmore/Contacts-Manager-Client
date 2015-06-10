@@ -2,13 +2,12 @@
 'use strict';
 
 angular
-	.module('authModule')
+	.module('authModule.services')
 	.service('authService', [
     '$q',
     'authResource',
     'sessionService',
     function ($q, authResource, sessionService) {
-
 
 
 		/**

@@ -3,7 +3,7 @@ describe('authModule services:', function() {
 	var $httpBackend, authService, sessionService, successCb, errorCb, REQUEST_URL;
 
 	beforeEach(function() {
-		angular.mock.module('authModule');
+		angular.mock.module('authModule.services');
 		angular.mock.module('globalConfig');
 	});
 

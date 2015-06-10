@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-	.module('authModule')
+	.module('authModule.services')
 	.factory('authResource', ['$resource', 'GLOBAL_SETTINGS', function($resource, GLOBAL_SETTINGS) {
 			var REQUEST_URL = GLOBAL_SETTINGS.BASE_URL + GLOBAL_SETTINGS.API_VERSION;
 

@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-	.module('authModule')
+	.module('authModule.services')
 	.service('sessionService', ['$http', function ($http) {
 		var self = this;
 
