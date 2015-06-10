@@ -8,6 +8,8 @@ angular
 	.module('authModule', [
 		'ngResource',
 		'ui.router',
+
+		'authModule.controllers',
 		'authModule.services'
 	])
 
