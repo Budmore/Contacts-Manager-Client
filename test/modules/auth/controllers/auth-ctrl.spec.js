@@ -162,4 +162,14 @@ describe('authModule.controllers: "AuthCtrl"', function() {
 		expect(scope.isError).toEqual(true);
 	});
 
+
+
+	it('should logout()', function() {
+		spyOn(sessionService, 'clearSession');
+
+		scope.logout();
+
+		expect(sessionService.clearSession).toHaveBeenCalled();
+	});
+
 });

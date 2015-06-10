@@ -1,11 +1,19 @@
 'use strict';
 angular.module('authModule.controllers')
 	.controller('AuthCtrl', [
+    '$rootScope',
 	'$scope',
+	'$location',
 	'authService',
 	'sessionService',
-	function($scope, authService, sessionService) {
+	function($rootScope, $scope, $location, authService, sessionService) {
 
+		$scope.user = {};
+
+		$scope.loginAsGuest = function() {
+			// $rootScope.session = true;
+			// $location.path('contacts');
+		};
 
 		/**
 		 * Login user
@@ -25,7 +33,6 @@ angular.module('authModule.controllers')
 
 					if (response && response.token) {
 						sessionService.setSession(response.token);
-
 					} else {
 						//@TODO: error handler
 						$scope.isError = true;
@@ -77,6 +84,11 @@ angular.module('authModule.controllers')
 
 		};
 
-
+		/**
+		 * Clear the session
+		 */
+		$scope.logout = function() {
+			sessionService.clearSession();
+		};
 
 	}]);

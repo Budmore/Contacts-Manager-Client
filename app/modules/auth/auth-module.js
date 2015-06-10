@@ -10,6 +10,7 @@ angular
 		'ui.router',
 
 		'authModule.controllers',
+		'authModule.directives',
 		'authModule.services'
 	])
 
@@ -36,7 +37,7 @@ angular
 	function($rootScope, sessionService, authService) {
 
 		$rootScope.appReady = false;
-		$rootScope.isLogged = sessionService.getSession().isLogged;
+		$rootScope.session = sessionService.getSession();
 
 		var hasToken = sessionService.checkSession();
 
@@ -56,6 +57,8 @@ angular
 				$rootScope.appReady = true;
 			});
 
+		} else {
+			$rootScope.appReady = true;
 		}
 
 
