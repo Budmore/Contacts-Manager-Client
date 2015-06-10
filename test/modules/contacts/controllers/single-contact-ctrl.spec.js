@@ -11,7 +11,7 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 		$mdToast,
 		scope,
 		contactsService,
-		ParentController;
+		createParentController;
 
 
 	// Initialize the controller and a mock scope
@@ -28,12 +28,12 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 			contactsService: contactsService
 		});
 
-		ParentController = function() {
+		createParentController = function() {
 			return 	$controller('ContactsListCtrl', {
 				$scope: scope,
 				// contactsService: contactsService
 			});
-		}
+		};
 
 	}));
 
@@ -184,7 +184,7 @@ describe('contactsModule services: "SingleContactCtrl"', function () {
 	});
 
 	it('should aksBeforeRemove() - with $mdToast removeContact()', function() {
-		ParentController();
+		createParentController();
 		var _contact = {
 			firstname: 'Arni'
 		};
