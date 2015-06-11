@@ -44,6 +44,17 @@ class="sidebar-left md-whiteframe-z2">
 			</md-button>
 			<div flex layout="row" class="fill-height">
 				<h2 class="md-toolbar-tools" ng-bind="pageTitle"></h2>
+				<span flex></span>
+
+				<div ng-controller="AuthCtrl">
+					<md-button
+						type="button"
+						class="launch"
+						ng-click="logout()"
+						>
+							Logout
+						</md-button>
+				</div>
 			</div>
 		</div>
 	</md-toolbar>

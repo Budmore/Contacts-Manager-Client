@@ -33,9 +33,10 @@ angular
 
 	.run([
 	'$rootScope',
+	'$state',
 	'sessionService',
 	'authService',
-	function($rootScope, sessionService, authService) {
+	function($rootScope, $state, sessionService, authService) {
 
 		$rootScope.appReady = false;
 		$rootScope.session = sessionService.getSession();
@@ -61,6 +62,20 @@ angular
 		} else {
 			$rootScope.appReady = true;
 		}
+
+
+		$rootScope.$on('$stateChangeStart', function (event, nextState) {
+
+			// no need to redirect if user is authenticated
+			if ( sessionService.getSession().isLogged){
+				return;
+			}
+
+			if (nextState.forLogged && $rootScope.appReady) {
+				event.preventDefault();
+				$state.go('login');
+			}
+		});
 
 
 	}]);

@@ -22,20 +22,20 @@
 
 		<div ng-if="!appReady">
 			<div class="center-transform">
-				<span class="spinner-double-dot-out"></span>
+				<span class="spinner-double-dot"></span>
 			</div>
 		</div>
 
 		<div
 		flex
 		class="height-100"
-		ng-if="!session.isLogged"
+		ng-if="!session.isLogged && appReady"
 		ui-view></div>
 
 		<div
 		flex
 		layout="row"
-		ng-if="session.isLogged"
+		ng-if="session.isLogged && appReady"
 		ng-include="'modules/general/views/logged-template.html'">
 		</div>
 

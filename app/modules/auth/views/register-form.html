@@ -1,4 +1,5 @@
-<div ng-controller="AuthCtrl" class="height-100">
+<div ng-controller="AuthCtrl" ng-if="!session.isLogged" class="height-100">
+
 	<section layout="column" flex  layout-align="center center" class="login-form height-100">
 
 		<form name="registerForm" class="md-whiteframe-z2" ng-submit="register(user)">

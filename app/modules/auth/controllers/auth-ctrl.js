@@ -90,6 +90,7 @@ angular.module('authModule.controllers')
 		 * Clear the session
 		 */
 		$scope.logout = function() {
+			$location.path('/login');
 			sessionService.clearSession();
 		};
 
