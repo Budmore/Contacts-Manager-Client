@@ -20,7 +20,7 @@ angular.module('authModule.controllers')
 		 * @param  {Object} user Credentials "user.email" and "user.password"
 		 */
 		$scope.login = function(user) {
-			if (!user) {
+			if (!user || !user.email || !user.password) {
 				// @TODO: validate email and password
 				return;
 			}
@@ -33,6 +33,7 @@ angular.module('authModule.controllers')
 
 					if (response && response.token) {
 						sessionService.setSession(response.token);
+						$location.path('/');
 					} else {
 						//@TODO: error handler
 						$scope.isError = true;
@@ -55,7 +56,7 @@ angular.module('authModule.controllers')
 		 * @param  {Object} user Credentials "user.email" and "user.password"
 		 */
 		$scope.register = function(user) {
-			if (!user) {
+			if (!user || !user.email || !user.password) {
 				// @TODO: validate email and password
 				return;
 			}
@@ -68,6 +69,7 @@ angular.module('authModule.controllers')
 
 					if (response && response.token) {
 						sessionService.setSession(response.token);
+						$location.path('/');
 
 					} else {
 						//@TODO: error handler

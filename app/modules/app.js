@@ -24,7 +24,7 @@ angular
 
 	.config(['$urlRouterProvider', '$mdIconProvider',
 	function($urlRouterProvider, $mdIconProvider) {
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/contacts');
 
 		$mdIconProvider
 			.iconSet('social', 'images/icons/sets/social-icons.svg', 24)

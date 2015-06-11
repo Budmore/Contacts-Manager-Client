@@ -20,71 +20,24 @@
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-		<section ng-if="!session.isLogged" flex class="height-100">
-			<!-- <login-form></login-form> -->
-			<register-form></register-form>
-		</section>
-
-
-		<md-sidenav
-		ng-if="session.isLogged && appReady"
-		md-is-locked-open="$mdMedia('gt-sm')"
-		md-component-id="navigation-menu"
-		class="sidebar-left md-whiteframe-z2">
-
-			<md-toolbar layout="row">
-				<h1 class="md-toolbar-tools" layout-align-gt="center">
-					<a ui-sref="contacts" title="home page">
-						<span class="glyphicon glyphicon-tower"></span>
-					</a>
-				</h1>
-			</md-toolbar>
-
-			<md-content role="navigation" class="md-default-theme">
-
-
-
-
-				<ul class="navigation-menu">
-					<li>
-						<md-button title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
-					</li>
-					<li ui-sref-active="active">
-						 <md-button ui-sref="contacts" title="contacts subpage"><md-icon md-svg-icon="social:people"></md-icon> Contacts</md-button>
-					</li>
-					<li ui-sref-active="active">
-						<md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
-					</li>
-					<li ui-sref-active="active">
-						<md-button ui-sref="todo"  title="settings subpage"><span class="glyphicon glyphicon-list"></span> ToDo</md-button>
-					</li>
-				</ul>
-
-			</md-content>
-
-		</md-sidenav>
-
-
-
-
-		<div ng-if="session.isLogged && appReady" layout="column" role="main" flex>
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<md-button hide-gt-sm ng-click="openNavigation()" class="md-icon-button" aria-label="Show navigation menu">
-						<md-icon md-svg-icon="images/icons/ic_menu_24px.svg"></md-icon>
-					</md-button>
-					<div flex layout="row" class="fill-height">
-						<h2 class="md-toolbar-tools" ng-bind="pageTitle"></h2>
-					</div>
-				</div>
-			</md-toolbar>
-
-
-			<md-content ui-view md-scroll-y class="md-default-theme">
-			</md-content>
-
+		<div ng-if="!appReady">
+			<div class="center-transform">
+				<span class="spinner-double-dot-out"></span>
+			</div>
 		</div>
 
+		<div
+		flex
+		class="height-100"
+		ng-if="!session.isLogged"
+		ui-view></div>
+
+		<div
+		flex
+		layout="row"
+		ng-if="session.isLogged"
+		ng-include="'modules/general/views/logged-template.html'">
+		</div>
 
 
 
@@ -113,9 +66,6 @@
 		<script src="modules/auth/auth-module.js"></script>
 		<script src="modules/auth/controllers/_init.js"></script>
 		<script src="modules/auth/controllers/auth-ctrl.js"></script>
-		<script src="modules/auth/directives/_init.js"></script>
-		<script src="modules/auth/directives/login-form/login-form.js"></script>
-		<script src="modules/auth/directives/register-form/register-form.js"></script>
 		<script src="modules/auth/services/_init.js"></script>
 		<script src="modules/auth/services/auth-resource.js"></script>
 		<script src="modules/auth/services/auth-service.js"></script>

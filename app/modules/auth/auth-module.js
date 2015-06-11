@@ -11,7 +11,6 @@ angular
 		'ngMessages',
 
 		'authModule.controllers',
-		'authModule.directives',
 		'authModule.services'
 	])
 
@@ -22,13 +21,14 @@ angular
 			.state('login', {
 				title: 'Login',
 				url: '/login',
-				templateUrl: 'modules/general/views/settings.html',
+				templateUrl: 'modules/auth/views/login-form.html'
+			})
+			.state('register', {
+				title: 'register',
+				url: '/register',
+				templateUrl: 'modules/auth/views/register-form.html'
 			});
-			// .state('todo', {
-			// 	title: '@ToDo',
-			// 	url: '/todo',
-			// 	templateUrl: 'modules/general/views/todo.html',
-			// });
+
 	}])
 
 	.run([
