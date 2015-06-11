@@ -8,6 +8,7 @@ angular
 	.module('authModule', [
 		'ngResource',
 		'ui.router',
+		'ngMessages',
 
 		'authModule.controllers',
 		'authModule.directives',
