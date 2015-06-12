@@ -16,7 +16,7 @@ angular
 			.state('contacts', {
 				title: 'Contacts',
 				url: '/contacts',
-				templateUrl: 'modules/contacts/views/contacts.html',
+				templateUrl: 'modules/contacts/views/index.html',
 				forLogged: true
 			});
 

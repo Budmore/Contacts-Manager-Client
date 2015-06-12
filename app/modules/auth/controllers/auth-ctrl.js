@@ -11,8 +11,9 @@ angular.module('authModule.controllers')
 		$scope.user = {};
 
 		$scope.loginAsGuest = function() {
-			// $rootScope.session = true;
-			// $location.path('contacts');
+			$location.path('contacts');
+			sessionService.setSession('demo-mode');
+			$rootScope.isDemoMode = true;
 		};
 
 		/**

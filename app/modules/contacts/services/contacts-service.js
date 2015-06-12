@@ -5,32 +5,7 @@ angular
 	.module('contactsModule')
 	.service('contactsService', ['$q', 'contactsResource', function ($q, contactsResource) {
 
-
-
-		/**
-		 * Loop over every date.
-		 * Replace eg. '1920-11-10T23:00:00.000Z' to JavaScript Date object
-		 *
-		 * @param  {Array} dates
-		 * @return {Array}
-		 */
-		function parseAllDates(dates) {
-			if (dates && dates.constructor === Array) {
-				dates.forEach(function(date) {
-
-					if ( date && moment(date.date).isValid()) {
-						date.date = new Date(date.date);
-					}
-
-				});
-			}
-
-
-
-			return dates;
-		}
-
-
+		var self = this;
 
 		function ModelConstructor() {
 
@@ -123,7 +98,7 @@ angular
 
 						response.data.forEach(function(contact){
 							if (contact.dates) {
-								parseAllDates(contact.dates);
+								self.parseAllDates(contact.dates);
 							}
 						});
 
@@ -247,7 +222,6 @@ angular
 
 				var today = dateOfReference || new Date();
 				today.setHours(0,0,0,0);
-				var todayMonth = today.getMonth();
 
 
 				var firstDate = new Date(contactA.dates[0].date);
@@ -268,9 +242,34 @@ angular
 
 				return firstDate - secondDate;
 
+			};
+
+		};
+
+
+
+		/**
+		 * Loop over every date.
+		 * Replace eg. '1920-11-10T23:00:00.000Z' to JavaScript Date object
+		 *
+		 * @param  {Array} dates
+		 * @return {Array}
+		 */
+		this.parseAllDates = function(dates) {
+			if (dates && dates.constructor === Array) {
+				dates.forEach(function(date) {
+
+					if ( date && moment(date.date).isValid()) {
+						date.date = new Date(date.date);
+					}
+
+				});
 			}
 
-		}
+
+
+			return dates;
+		};
 
 		/**
 		 * Available dates type.
