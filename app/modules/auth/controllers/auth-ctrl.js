@@ -40,6 +40,7 @@ angular.module('authModule.controllers')
 					}
 
 				}, function loginError() {
+
 					//@TODO: error handler
 					$scope.isError = true;
 				}
@@ -92,6 +93,14 @@ angular.module('authModule.controllers')
 		$scope.logout = function() {
 			$location.path('/login');
 			sessionService.clearSession();
+		};
+
+
+		/**
+		 * When user click on the form remove error "invalid credentials"
+		 */
+		$scope.clearError = function() {
+			$scope.isError = false;
 		};
 
 	}]);

@@ -172,4 +172,13 @@ describe('authModule.controllers: "AuthCtrl"', function() {
 		expect(sessionService.clearSession).toHaveBeenCalled();
 	});
 
+
+
+	it('should clearError()', function() {
+		scope.isError = true;
+
+		scope.clearError();
+
+		expect(scope.isError).toBe(false);
+	});
 });

@@ -7,6 +7,9 @@
 				<md-icon md-svg-icon="social:person-add"></md-icon>
 			</div>
 			<br>
+			<section ng-show="isError">
+				<p class="text-center text-error font-small">Invalid credentials!</p>
+			</section>
 			<md-input-container>
 				<label>Email</label>
 				<input name="email" type="email" ng-model="user.email" required>

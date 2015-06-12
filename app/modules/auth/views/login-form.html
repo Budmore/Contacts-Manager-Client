@@ -2,11 +2,14 @@
 
 	<section layout="column" flex  layout-align="center center" class="login-form height-100">
 
-		<form name="loginForm" class="md-whiteframe-z2" ng-submit="login(user)">
+		<form name="loginForm" class="md-whiteframe-z2" ng-submit="login(user)" ng-click="clearError()">
 			<div layout="row" class="icon" layout-align="center center" layout-padding>
 				<md-icon md-svg-src="images/icons/cake.svg" ></md-icon>
 			</div>
 			<br>
+			<section ng-show="isError">
+				<p class="text-center text-error font-small">Invalid credentials!</p>
+			</section>
 			<md-input-container>
 				<label>Email</label>
 				<input name="email" type="email" ng-model="user.email" required>
@@ -17,11 +20,9 @@
 			</md-input-container>
 			<md-input-container>
 				<label>Password</label>
-				<input type="password" ng-model="user.password">
-
-				<div ng-messages="registerForm.password.$error" ng-show="loginForm.password.$dirty && loginForm.password.$touched" required>
+				<input type="password" ng-model="user.password" required>
+				<div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty && loginForm.password.$touched">
 					<div ng-message="required">This is required!</div>
-					<div ng-message="minlength">That's too short! (min 6)</div>
 				</div>
 			</md-input-container>
 			<br>
