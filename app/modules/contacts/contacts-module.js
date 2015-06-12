@@ -17,6 +17,7 @@ angular
 				title: 'Contacts',
 				url: '/contacts',
 				templateUrl: 'modules/contacts/views/contacts.html',
+				forLogged: true
 			});
 
 

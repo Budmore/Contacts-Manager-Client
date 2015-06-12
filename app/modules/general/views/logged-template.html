@@ -1,0 +1,65 @@
+<md-sidenav
+ng-if="session.isLogged && appReady"
+md-is-locked-open="$mdMedia('gt-sm')"
+md-component-id="navigation-menu"
+class="sidebar-left md-whiteframe-z2">
+
+	<md-toolbar layout="row">
+		<h1 class="md-toolbar-tools" layout-align-gt="center">
+			<a ui-sref="contacts" title="home page">
+				<span class="glyphicon glyphicon-tower"></span>
+			</a>
+		</h1>
+	</md-toolbar>
+
+	<md-content role="navigation" class="md-default-theme">
+
+		<ul class="navigation-menu">
+			<li>
+				<md-button title="calendar subpage"><span class="glyphicon glyphicon-calendar"></span> Calendar</md-button>
+			</li>
+			<li ui-sref-active="active">
+				 <md-button ui-sref="contacts" title="contacts subpage"><md-icon md-svg-icon="social:people"></md-icon> Contacts</md-button>
+			</li>
+			<li ui-sref-active="active">
+				<md-button ui-sref="settings"  title="settings subpage"><span class="glyphicon glyphicon-wrench"></span> Settings</md-button>
+			</li>
+			<li ui-sref-active="active">
+				<md-button ui-sref="todo"  title="settings subpage"><span class="glyphicon glyphicon-list"></span> ToDo</md-button>
+			</li>
+		</ul>
+
+	</md-content>
+
+</md-sidenav>
+
+
+
+
+<div layout="column" role="main" flex>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button hide-gt-sm ng-click="openNavigation()" class="md-icon-button" aria-label="Show navigation menu">
+				<md-icon md-svg-icon="images/icons/ic_menu_24px.svg"></md-icon>
+			</md-button>
+			<div flex layout="row" class="fill-height">
+				<h2 class="md-toolbar-tools" ng-bind="pageTitle"></h2>
+				<span flex></span>
+
+				<div ng-controller="AuthCtrl">
+					<md-button
+						type="button"
+						class="launch"
+						ng-click="logout()"
+						>
+							Logout
+						</md-button>
+				</div>
+			</div>
+		</div>
+	</md-toolbar>
+
+
+	<md-content ui-view md-scroll-y class="md-default-theme"></md-content>
+
+</div>

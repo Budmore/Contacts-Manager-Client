@@ -1,0 +1,45 @@
+<div ng-controller="AuthCtrl" ng-if="!session.isLogged" class="height-100">
+
+	<section layout="column" flex  layout-align="center center" class="login-form height-100">
+
+		<form name="registerForm" class="md-whiteframe-z2" ng-submit="register(user)">
+			<div layout="row" class="icon" layout-align="center center" layout-padding>
+				<md-icon md-svg-icon="social:person-add"></md-icon>
+			</div>
+			<br>
+			<section ng-show="isError">
+				<p class="text-center text-error font-small">Invalid credentials!</p>
+			</section>
+			<md-input-container>
+				<label>Email</label>
+				<input name="email" type="email" ng-model="user.email" required>
+				<div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$dirty && registerForm.email.$touched">
+					<div ng-message="required">This is required!</div>
+					<div ng-message="email">Not valid email!</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<label>Password</label>
+				<input name="password" type="password" minlength="6" ng-model="user.password" required>
+
+				<div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$dirty && registerForm.password.$touched">
+					<div ng-message="required">This is required!</div>
+					<div ng-message="minlength">That's too short! (min 6)</div>
+				</div>
+			</md-input-container>
+			<!-- <section class="well">
+				reCaptcha placeholder
+			</section>
+	 -->
+			<br>
+			<footer layout="row" layout-sm="column" layout-align="center center">
+				<md-button class="md-raised md-primary" ng-click="loginAsGuest()">
+					Create user
+				</md-button>
+			</footer>
+		</form>
+		<div layout-padding>
+			<a ui-sref="login" class="text-muted">Already have an account</a>
+		</div>
+	</section>
+</div>

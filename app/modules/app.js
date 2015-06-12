@@ -17,13 +17,14 @@ angular
 		'ui.router',
 
 		'globalConfig',
+		'authModule',
 		'contactsModule',
 		'generalModule'
 	])
 
 	.config(['$urlRouterProvider', '$mdIconProvider',
 	function($urlRouterProvider, $mdIconProvider) {
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/contacts');
 
 		$mdIconProvider
 			.iconSet('social', 'images/icons/sets/social-icons.svg', 24)

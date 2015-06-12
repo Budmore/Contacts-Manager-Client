@@ -18,11 +18,13 @@ angular
 				title: 'Settings',
 				url: '/settings',
 				templateUrl: 'modules/general/views/settings.html',
+				forLogged: true
 			})
 			.state('todo', {
 				title: '@ToDo',
 				url: '/todo',
 				templateUrl: 'modules/general/views/todo.html',
+				forLogged: true
 			});
 	}]);
 
