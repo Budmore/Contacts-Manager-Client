@@ -19,7 +19,8 @@ angular
 		'globalConfig',
 		'authModule',
 		'contactsModule',
-		'generalModule'
+		'generalModule',
+		'demoModule'
 	])
 
 	.config(['$urlRouterProvider', '$mdIconProvider',

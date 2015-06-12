@@ -4,8 +4,8 @@
  * @ngdoc function
  * @name contactsModule.controller:AddContactCtrl
  */
-angular.module('contactsModule')
-	.controller('SingleContactCtrl',[
+angular.module('demoModule')
+	.controller('DemoSingleContactCtrl',[
 	'$rootScope',
 	'$scope',
 	'$mdToast',
@@ -60,35 +60,22 @@ angular.module('contactsModule')
 
 
 		/**
-		 * Create new contact. if request is pending enable spinner.
+		 * Create new mocked contact.
 		 * @param  {object} contact
 		 */
 		$scope.createContact = function(contact) {
-			$scope.showSpinner = true;
-			$scope.isError = false;
 
+			contact._id = Math.random().toString(36).substring(2);
 
-			contactsService.createContact(contact).then(
-				function success(response) {
+			contactsService.contactsModel.addToModel(contact);
 
-					contactsService.contactsModel.addToModel(response);
+			$mdToast.show(
+				$mdToast.simple()
+					.content('Contact created')
+					.position('top right')
+					.hideDelay(1500)
+			);
 
-					$mdToast.show(
-						$mdToast.simple()
-							.content('Contact created')
-							.position('top right')
-							.hideDelay(1500)
-					);
-
-
-					$scope.closePanel();
-
-				}, function error() {
-					$scope.isError = true;
-				}
-			).finally(function() {
-				$scope.showSpinner = false;
-			});
 		};
 
 
@@ -101,30 +88,21 @@ angular.module('contactsModule')
 		 * @param  {object} contact
 		 */
 		$scope.updateContact = function(contact) {
-			$scope.showSpinner = true;
-			$scope.isError = false;
 
 
-			contactsService.updateContact(contact).then(
-				function success(response) {
 
-					contactsService.contactsModel.updateItemById(response);
+			contactsService.contactsModel.updateItemById(contact);
 
-					$mdToast.show(
-						$mdToast.simple()
-							.content('Updated successfully')
-							.position('top right')
-							.hideDelay(1500)
-					);
+			$mdToast.show(
+				$mdToast.simple()
+					.content('Updated successfully')
+					.position('top right')
+					.hideDelay(1500)
+			);
 
-					$scope.closePanel();
+			$scope.closePanel();
 
-				}, function error() {
-					$scope.isError = true;
-				}
-			).finally(function() {
-				$scope.showSpinner = false;
-			});
+
 		};
 
 		/**

@@ -1,74 +1,75 @@
+<form name="userForm" ng-submit="saveContact(contact)">
 
-<section ng-controller="SingleContactCtrl" class="contact-form" layout-padding>
-	<form name="userForm" ng-submit="saveContact(contact)">
+	<md-button type="button" class="md-icon-button close" ng-click="askBeforeRemove(contact)">
+		<md-icon md-font-icon="glyphicon glyphicon-trash"></md-icon>
+		<md-tooltip> Remove this contact</md-tooltip>
+	</md-button>
 
-		<md-button type="button" class="md-icon-button close" ng-click="askBeforeRemove(contact)">
-			<md-icon md-font-icon="glyphicon glyphicon-trash"></md-icon>
-			<md-tooltip> Remove this contact</md-tooltip>
-		</md-button>
+	<div class="avatar">
+		<img ng-if="!contact.imageUrl" ng-src="/images/avatar.png" alt="Blank avatar">
+ 		<img ng-if="contact.imageUrl"
+		class="avatar"
+		alt="Picture of {{ contact.firstname }} {{contact.lastname}}"
+		ng-src="{{ contact.imageUrl }}">
+	</div>
 
-		<div class="avatar">
-			<img src="/images/avatar.png" alt="Empty avatar">
+	<div layout layout-sm="column">
+		<md-input-container flex>
+			<label>Firstname</label>
+			<input ng-model="contact.firstname" md-sidenav-focus>
+		</md-input-container>
+
+		<md-input-container flex>
+			<label>Lastname</label>
+			<input ng-model="contact.lastname">
+		</md-input-container>
+	</div>
+
+
+	<div>
+
+		<md-input-container flex>
+			<label>Email</label>
+			<input type="email" ng-model="contact.email">
+		</md-input-container>
+	</div>
+
+	<div>
+		<div layout="column" layout-align="center center" >
+			<md-select ng-model="dateTypeSelected" placeholder="Add new date">
+				<md-option
+				ng-repeat="dateType in dateTypes"
+				ng-value="dateType.name"
+				ng-click="addDate(dateType.type, contact)">
+					{{dateType.name}}
+				</md-option>
+			</md-select>
 		</div>
 
-		<div layout layout-sm="column">
-			<md-input-container flex>
-				<label>Firstname</label>
-				<input ng-model="contact.firstname" md-sidenav-focus>
-			</md-input-container>
-
-			<md-input-container flex>
-				<label>Lastname</label>
-				<input ng-model="contact.lastname">
-			</md-input-container>
-		</div>
-
-
-		<div>
-
-			<md-input-container flex>
-				<label>Email</label>
-				<input type="email" ng-model="contact.email">
-			</md-input-container>
-		</div>
-
-		<div>
-			<div layout="column" layout-align="center center" >
-				<md-select ng-model="dateTypeSelected" placeholder="Add new date">
-					<md-option
-					ng-repeat="dateType in dateTypes"
-					ng-value="dateType.name"
-					ng-click="addDate(dateType.type, contact)">
-						{{dateType.name}}
-					</md-option>
-				</md-select>
+		<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
+			<label>Date</label>
+			<input type="date" ng-model="date.date" required>
+			<div class="meta">
+				<md-button
+				type="button"
+				ng-click="removeItemFromArray(date, contact.dates)"
+				class="md-icon-button close">
+					&times;
+				</md-button>
 			</div>
 
-			<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
-				<label>Date</label>
-				<input type="date" ng-model="date.date" required>
-				<div class="meta">
-					<md-button
-					type="button"
-					ng-click="removeItemFromArray(date, contact.dates)"
-					class="md-icon-button close">
-						&times;
-					</md-button>
-				</div>
+		</md-input-container>
 
-			</md-input-container>
-
-		</div>
+	</div>
 
 
-		<footer layout="row" layout-sm="column" layout-align="center center">
-			<md-button type="button" ng-click="closePanel()">
-				Cancel
-			</md-button>
-			<md-button class="md-raised md-primary">
-				<span ng-show="contact._id">Edit</span>
-				<span ng-show="!contact._id">Save</span>
-			</md-button>
-		</footer>
-	</form>
-</section>
+	<footer layout="row" layout-sm="column" layout-align="center center">
+		<md-button type="button" ng-click="closePanel()">
+			Cancel
+		</md-button>
+		<md-button class="md-raised md-primary">
+			<span ng-show="contact._id">Edit</span>
+			<span ng-show="!contact._id">Save</span>
+		</md-button>
+	</footer>
+</form>

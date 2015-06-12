@@ -27,7 +27,7 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 	it('should get contacts list', function() {
 		var dfd = $q.defer();
 		spyOn(contactsService, 'getContacts').and.returnValue(dfd.promise);
-
+		spyOn(scope, 'sortByType');
 		var _responseMock = {
 			count: 0,
 			data: []
@@ -39,6 +39,7 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 		scope.$digest();
 
 		expect(contactsService.getContacts).toHaveBeenCalled();
+		expect(scope.sortByType).toHaveBeenCalled();
 		expect(scope.showSpinner).toBe(false);
 
 	});
@@ -92,12 +93,15 @@ describe('contactsModule controller: "ContactsListCtrl"', function() {
 			};
 		});
 
-		scope.sortByType()
+		scope.sortByType();
 
 		expect(contactsService.contactsModel.getModel).toHaveBeenCalled();
 		expect(contactsService.upcomingDates).toHaveBeenCalled();
 
 
 	});
+
+
+
 
 });

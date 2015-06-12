@@ -10,14 +10,13 @@
 angular.module('contactsModule')
 	.controller('ContactsListCtrl', [
 	'$scope',
-	'$mdUtil',
 	'$mdSidenav',
 	'contactsService',
-    function ($scope, $mdUtil, $mdSidenav, contactsService) {
+	function ($scope, $mdSidenav, contactsService) {
 
-    	$scope.filters = {
-    		show: false
-    	};
+		$scope.filters = {
+			show: false
+		};
 
 		$scope.contactsList = contactsService.contactsModel.getModel();
 
@@ -76,13 +75,14 @@ angular.module('contactsModule')
 		 * Open panel with empty contact form
 		 */
 		$scope.openPanel = function() {
-			$mdSidenav('single-contact').open();
-
 			$scope.contact = {
 				dates: [{
 					type: 'BIRTHDATE'
 				}]
 			};
+
+			$mdSidenav('single-contact').open();
+
 		};
 
 		/**
@@ -90,7 +90,14 @@ angular.module('contactsModule')
 		 * @param  {object} contact
 		 */
 		$scope.goToContact = function(contact) {
-			$scope.contact = angular.copy(contact);
+			var _contactCopy = angular.copy(contact);
+
+			_contactCopy.dates.map(function(item) {
+				item.date = new Date(item.date);
+			});
+
+
+			$scope.contact = _contactCopy;
 			$mdSidenav('single-contact').open();
 		};
 
@@ -102,7 +109,7 @@ angular.module('contactsModule')
 
 			switch(type) {
 				case 'UPCOMING_DATE':
-				    model.data.sort(contactsService.upcomingDates(dateOfReference));
+					model.data.sort(contactsService.upcomingDates(dateOfReference));
 					break;
 
 				default:
@@ -110,7 +117,7 @@ angular.module('contactsModule')
 
 			}
 
-		}
+		};
 
 
 	}]);

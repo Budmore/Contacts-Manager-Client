@@ -1,0 +1,22 @@
+
+<div ng-if="!isDemoMode" ng-controller="ContactsListCtrl" ng-init="init()">
+	<ng-include	src="'modules/contacts/views/contacts.html'"></ng-include>
+
+	<md-sidenav class="md-sidenav-left md-whiteframe-z1 side-panel" md-component-id="single-contact">
+		<section ng-controller="SingleContactCtrl" class="contact-form" layout-padding>
+			<ng-include src="'modules/contacts/views/single-contact.html'"></ng-include>
+		</section>
+	</md-sidenav>
+
+</div>
+
+<div ng-if="isDemoMode" ng-controller="DemoContactsListCtrl" ng-init="init()">
+	<ng-include	src="'modules/contacts/views/contacts.html'"></ng-include>
+
+	<md-sidenav class="md-sidenav-left md-whiteframe-z1 side-panel" md-component-id="single-contact">
+		<section ng-controller="DemoSingleContactCtrl" class="contact-form" layout-padding>
+			<ng-include src="'modules/contacts/views/single-contact.html'"></ng-include>
+		</section>
+	</md-sidenav>
+
+</div>

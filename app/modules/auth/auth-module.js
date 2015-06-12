@@ -53,7 +53,7 @@ angular
 				}, function checkTokenError() {
 
 					sessionService.clearSession();
-
+					$state.go('login');
 				}
 			).finally(function() {
 				$rootScope.appReady = true;
