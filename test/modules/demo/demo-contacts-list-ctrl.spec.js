@@ -52,7 +52,7 @@ describe('demoModule controller: "DemoContactsListCtrl"', function() {
 
 	it('should getContacts() ', function() {
 		spyOn(scope, 'sortByType');
-		var REQUEST_URL = '/modules/demo/mocked/scientists-list.json';
+		var REQUEST_URL = '/images/demo/scientists-list.json';
 		var mockedData = {
 			data: [{}]
 		};

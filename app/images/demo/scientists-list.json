@@ -2,7 +2,7 @@
 	"data":[{
 		"firstname": "Nikola",
 		"lastname": "Tesla",
-		"imageUrl": "/modules/demo/mocked/nikola_tesla.jpg",
+		"imageUrl": "/images/demo/nikola_tesla.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -13,7 +13,7 @@
 	{
 		"firstname": "Mikołaj",
 		"lastname": "Kopernik",
-		"imageUrl": "/modules/demo/mocked/mikolaj_kopernik.jpg",
+		"imageUrl": "/images/demo/mikolaj_kopernik.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -24,7 +24,7 @@
 	{
 		"firstname": "Maria",
 		"lastname": "Skłodowska Curie",
-		"imageUrl": "/modules/demo/mocked/maria_sklodowska-curie.jpg",
+		"imageUrl": "/images/demo/maria_sklodowska-curie.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -35,7 +35,7 @@
 	{
 		"firstname": "Isaac",
 		"lastname": "Newton",
-		"imageUrl": "/modules/demo/mocked/isaac_newton.jpg",
+		"imageUrl": "/images/demo/isaac_newton.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -46,7 +46,7 @@
 	{
 		"firstname": "Johannes",
 		"lastname": "Kepler",
-		"imageUrl": "/modules/demo/mocked/johannes_kepler.jpg",
+		"imageUrl": "/images/demo/johannes_kepler.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -57,7 +57,7 @@
 	{
 		"firstname": "Christian Andreas",
 		"lastname": "Doppler",
-		"imageUrl": "/modules/demo/mocked/christian_doppler.jpg",
+		"imageUrl": "/images/demo/christian_doppler.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -68,7 +68,7 @@
 	{
 		"firstname": "Leonardo di ser Piero",
 		"lastname": "da Vinci",
-		"imageUrl": "/modules/demo/mocked/leonardo_da_vinci.jpg",
+		"imageUrl": "/images/demo/leonardo_da_vinci.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -79,7 +79,7 @@
 	{
 		"firstname": "Alan",
 		"lastname": "Turing",
-		"imageUrl": "/modules/demo/mocked/alan_turing.jpg",
+		"imageUrl": "/images/demo/alan_turing.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -90,7 +90,7 @@
 	{
 		"firstname": "Niels",
 		"lastname": "Bohr",
-		"imageUrl": "/modules/demo/mocked/niels_bohr.jpg",
+		"imageUrl": "/images/demo/niels_bohr.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",
@@ -101,7 +101,7 @@
 	{
 		"firstname": "Albert",
 		"lastname": "Einstein",
-		"imageUrl": "/modules/demo/mocked/albert_einstein.jpg",
+		"imageUrl": "/images/demo/albert_einstein.jpg",
 		"dates": [
 			{
 				"type": "BIRTHDATE",

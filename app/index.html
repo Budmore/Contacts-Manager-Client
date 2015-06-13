@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="contactsClient">
+<html ng-app="contactsClient">
 	<head>
 		<meta charset="utf-8">
 		<title ng-bind="pageTitle"></title>
@@ -59,6 +59,8 @@
 		<!-- endbower -->
 		<!-- endbuild -->
 
+		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+
 		<script src="modules/app.js"></script>
 		<script src="modules/global-config.js"></script>
 
@@ -89,5 +91,13 @@
 		<script src="modules/contacts/directives/get-date-directive.js"></script>
 		<script src="modules/contacts/services/contacts-resource.js"></script>
 		<script src="modules/contacts/services/contacts-service.js"></script>
+		<!-- endbuild -->
+
+
+		<!-- build:js({.tmp,app}) scripts/templates-cache.js -->
+		<!-- <script src="views/templates-cache.js"></script> -->
+		<!-- endbuild -->
+
+
 </body>
 </html>

@@ -8,7 +8,7 @@ angular.module('demoModule')
 	function($rootScope, $scope, $http, $mdSidenav, contactsService) {
 		'use strict';
 
-		var REQUEST_URL = '/modules/demo/mocked/scientists-list.json';
+		var REQUEST_URL = '/images/demo/scientists-list.json';
 
 		$scope.contactsList = contactsService.contactsModel.getModel();
 
