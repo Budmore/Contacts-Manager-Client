@@ -1,5 +1,6 @@
 angular.module('contactsModule')
 	.directive('getDate', function() {
+		'use strict';
 
 		var today = new Date();
 		today.setHours(0,0,0,0);
@@ -14,7 +15,7 @@ angular.module('contactsModule')
 			scope: {
 				date: '='
 			},
-			link: function(scope, element, attrs){
+			link: function(scope){
 
 
 				scope.$watch('date', function(date) {
@@ -34,7 +35,7 @@ angular.module('contactsModule')
 						var msg = moment(today).to(tempDate);
 
 						if (tempDate.getMonth() === todayMonth &&  tempDate.getDate() === today.getDate()) {
-							msg = 'Today!'
+							msg = 'Today!';
 						}
 
 						scope.parsedDate = msg;
@@ -46,6 +47,6 @@ angular.module('contactsModule')
 				});
 
 			}
-		}
+		};
 
 	});
