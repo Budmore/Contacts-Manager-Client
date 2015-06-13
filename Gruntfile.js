@@ -34,7 +34,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/modules/{,**/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -123,14 +123,14 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/modules/{,**/}*.js'
         ]
       },
       test: {
         options: {
           jshintrc: 'test/.jshintrc'
         },
-        src: ['test/spec/{,*/}*.js']
+        src: ['test/modules/{,**/}*.js']
       }
     },
 
@@ -178,7 +178,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
-        src: ['<%= yeoman.app %>/index.html'],
+        src: '<%= yeoman.app %>/index.html',
         ignorePath:  /\.\.\//
       },
       test: {
@@ -210,7 +210,7 @@ module.exports = function (grunt) {
         cssDir: '.tmp/styles',
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
+        javascriptsDir: '<%= yeoman.app %>/modules',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
         importPath: './bower_components',
         httpImagesPath: '/images',
@@ -238,7 +238,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          // '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -292,14 +292,23 @@ module.exports = function (grunt) {
     // uglify: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
+    //       '.tmp/scripts/scripts.js': [
+    //         '.tmp/scripts/scripts.js'
     //       ]
     //     }
     //   }
     // },
     // concat: {
-    //   dist: {}
+    //   generated: {
+    //     files: [
+    //       {
+    //         dest: '.tmp/concat/scripts/scripts.js',
+    //         src: [
+    //           'app/modules/{,**/}*.js',
+    //         ]
+    //       }
+    //     ]
+    //   }
     // },
 
     imagemin: {
@@ -307,7 +316,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '*/{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -339,6 +348,38 @@ module.exports = function (grunt) {
           src: ['*.html', 'views/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
         }]
+      }
+    },
+
+    ngtemplates: {
+      dist: {
+        files: [{
+            src: 'modules/{,**/}*.html',
+            cwd: 'app',
+            dest: '.tmp/views/templates-cache.js'
+        }],
+        options: {
+            // prefix: '/',
+            bootstrap:  function(module, script) {
+                return 'angular.module("contactsClient").run(["$templateCache", function($templateCache) {' + script + '}]);';
+            },
+            htmlmin: {
+                removeCommentsFromCDATA: true,
+                // watch out for comment directives!
+                removeComments: true,
+
+                // https://github.com/yeoman/grunt-usemin/issues/44
+                collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                removeAttributeQuotes: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes:  true
+            }
+        }
       }
     },
 
@@ -375,7 +416,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
+            'images/{,**/}*.{svg,json}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -409,7 +450,7 @@ module.exports = function (grunt) {
       dist: [
         'compass:dist',
         'imagemin',
-        'svgmin'
+        // 'svgmin'
       ]
     },
 
@@ -466,6 +507,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngtemplates',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
