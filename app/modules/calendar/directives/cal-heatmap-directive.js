@@ -35,7 +35,7 @@ angular.module('calendarModule.directives', [])
 		}
 
 
-		function link(scope, element) {
+		function link(scope) {
 			var cal = new CalHeatMap();
 
 			var config = scope.config || {};

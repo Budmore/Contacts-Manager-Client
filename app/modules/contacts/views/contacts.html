@@ -58,9 +58,9 @@
 			</div>
 
 
-			<md-list layout="column" layout-padding  role="listitem">
+			<md-list class="list-hover" layout="column" layout-padding  role="listitem">
 				<md-list-item
-				class="fade"
+				class="list-item fade"
 				ng-repeat="contact in contactsList.data | filter:filters.searchQuery track by contact._id"
 				ng-click="goToContact(contact, $event)">
 
@@ -68,7 +68,13 @@
 					<p>{{ contact.firstname }} {{ contact.lastname }}</p>
 
 					<span class="meta">
-						<get-date date="contact.dates[0]"></get-date>
+						<get-date date="contact.dates[0]" parsed-date="msg" full-date="fullDate"></get-date>
+						<span ng-show="msg">
+							{{ msg }}
+							<md-tooltip md-direction="top">
+								{{ contact.dates[0].type | lowercase }} on {{ fullDate }}
+							</md-tooltip>
+						</span>
 					</span>
 				</md-list-item>
 			</md-list>

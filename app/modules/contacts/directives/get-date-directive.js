@@ -11,9 +11,11 @@ angular.module('contactsModule')
 		return {
 
 			restrict: 'E',
-			template: '{{ parsedDate }}',
+			// template: '{{ parsedDate }}',
 			scope: {
-				date: '='
+				date: '=',
+				parsedDate: '=',
+				fullDate: '='
 			},
 			link: function(scope){
 
@@ -38,6 +40,7 @@ angular.module('contactsModule')
 							msg = 'Today!';
 						}
 
+						scope.fullDate = moment(tempDate).format('DD MMMM YYYY');
 						scope.parsedDate = msg;
 
 					}
