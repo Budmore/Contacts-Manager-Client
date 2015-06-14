@@ -62,7 +62,7 @@ angular.module('calendarModule.directives', [])
 				itemName: 'item',
 				onClick: function(date) {
 					var _date = moment(date).format('DD MMMM YYYY');
-					scope.selected = _date;
+					scope.dateName = _date;
 					scope.$apply();
 				}
 			};
@@ -79,7 +79,7 @@ angular.module('calendarModule.directives', [])
 			link: link,
 			scope: {
 				config: '=',
-				selected: '='
+				dateName: '='
 			}
 		};
 	});
