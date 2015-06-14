@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Contacts module. Manage all your contacts (CRUD)
  */
@@ -10,7 +11,6 @@ angular
 
 	.config(['$urlRouterProvider', '$stateProvider',
 	function($urlRouterProvider, $stateProvider) {
-		'use strict';
 
 		$stateProvider
 			.state('contacts', {
@@ -21,4 +21,13 @@ angular
 			});
 
 
+	}])
+
+	.run(['$rootScope', 'contactsService', function($rootScope, contactsService) {
+
+		$rootScope.$on('AUTH::LOGOUT', function() {
+			$rootScope.isDemoMode = false;
+
+			contactsService.contactsModel.setModel([]);
+		});
 	}]);

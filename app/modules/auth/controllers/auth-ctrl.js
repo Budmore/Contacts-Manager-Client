@@ -4,14 +4,15 @@ angular.module('authModule.controllers')
     '$rootScope',
 	'$scope',
 	'$location',
+	'$state',
 	'authService',
 	'sessionService',
-	function($rootScope, $scope, $location, authService, sessionService) {
+	function($rootScope, $scope, $location, $state, authService, sessionService) {
 
 		$scope.user = {};
 
 		$scope.loginAsGuest = function() {
-			$location.path('contacts');
+			$location.path('/');
 			sessionService.setSession('demo-mode');
 			$rootScope.isDemoMode = true;
 		};
@@ -92,8 +93,9 @@ angular.module('authModule.controllers')
 		 * Clear the session
 		 */
 		$scope.logout = function() {
-			$location.path('/login');
 			sessionService.clearSession();
+			$rootScope.$broadcast('AUTH::LOGOUT');
+			$state.go('login');
 		};
 
 
