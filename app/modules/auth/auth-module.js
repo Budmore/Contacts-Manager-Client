@@ -55,13 +55,13 @@ angular
 		if (hasToken && hasToken.token) {
 			authService.checkToken().then(
 				function checkTokenSuccess() {
-
 					sessionService.setSession(hasToken.token);
 
-				}, function checkTokenError() {
-
-					sessionService.clearSession();
-					$state.go('login');
+				}, function checkTokenError(err) {
+					if (err.data) {
+						sessionService.clearSession();
+						$state.go('login');
+					}
 				}
 			).finally(function() {
 				$rootScope.appReady = true;
