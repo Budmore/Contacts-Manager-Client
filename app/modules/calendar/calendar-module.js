@@ -2,7 +2,6 @@
  * General module with common code.
  */
 
- console.log('this calendarModule - pre');
 angular
 	.module('calendarModule', [
 		'ngResource',
@@ -13,7 +12,7 @@ angular
 	.config(['$stateProvider',
 	function($stateProvider) {
 		'use strict';
-		console.log('this calendarModule');
+
 		$stateProvider
 			.state('calendar', {
 				title: 'Calendar',
