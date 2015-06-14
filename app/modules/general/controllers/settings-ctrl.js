@@ -10,8 +10,8 @@ angular.module('generalModule')
 			phone: 501502503,
 			emailNotifications: [
 				'j.mach@budmore.pl',
-				'jakub@budmore.pl',
-				'j.mach@gaminglive.tv',
+				'darth.vader@gmail.com',
+				'linus.torvalds@gmail.com'
 			],
 			notifications: {
 				daily: false,
