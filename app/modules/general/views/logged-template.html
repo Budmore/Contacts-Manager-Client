@@ -5,27 +5,26 @@ md-component-id="navigation-menu"
 class="sidebar-left md-whiteframe-z2">
 
 	<md-toolbar layout="row">
-		<h1 class="md-toolbar-tools" layout-align-gt="center">
-			<a ui-sref="contacts" title="home page">
-				<span class="glyphicon glyphicon-tower"></span>
-			</a>
-		</h1>
+		<div class="md-toolbar-tools logotype">
+			<md-icon md-svg-icon="social:cake"></md-icon>
+			<h3>Reminder App</h3>
+		</div>
 	</md-toolbar>
 
 
 
 	<ul class="navigation-menu" role="navigation">
-		<li>
-			<md-button title="calendar subpage">Calendar</md-button>
+		<li ui-sref-active="active">
+			<md-button ui-sref="calendar" title="calendar subpage">Calendar</md-button>
 		</li>
 		<li ui-sref-active="active">
 			<md-button ui-sref="contacts" title="contacts subpage">Contacts</md-button>
 		</li>
 		<li ui-sref-active="active">
-			<md-button ui-sref="settings"  title="settings subpage">Settings</md-button>
+			<md-button ui-sref="settings" title="settings subpage">Settings</md-button>
 		</li>
 		<li ui-sref-active="active">
-			<md-button ui-sref="todo"  title="settings subpage">ToDo</md-button>
+			<md-button ui-sref="todo" title="settings subpage">ToDo</md-button>
 		</li>
 	</ul>
 

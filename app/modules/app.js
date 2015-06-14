@@ -20,6 +20,7 @@ angular
 		'authModule',
 		'contactsModule',
 		'generalModule',
+		'calendarModule',
 		'demoModule'
 	])
 

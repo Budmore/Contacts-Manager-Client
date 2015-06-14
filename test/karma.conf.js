@@ -32,6 +32,8 @@ module.exports = function(config) {
       'bower_components/momentjs/moment.js',
       'bower_components/lodash/lodash.js',
       'bower_components/angular-messages/angular-messages.js',
+      'bower_components/d3/d3.js',
+      'bower_components/cal-heatmap/cal-heatmap.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/modules/general/general-module.js',
