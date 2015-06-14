@@ -23,7 +23,7 @@
 						<md-icon md-svg-icon="social:person-add"></md-icon>
 					</md-button>
 
-<!-- 						<md-button
+					<!-- <md-button
 					type="button"
 					class="md-icon-button launch"
 					ng-click="sortByType()"
@@ -58,7 +58,7 @@
 			</div>
 
 
-			<md-list ng-if="!showSpinner" layout="column" layout-padding  role="listitem">
+			<md-list layout="column" layout-padding  role="listitem">
 				<md-list-item
 				class="fade"
 				ng-repeat="contact in contactsList.data | filter:filters.searchQuery track by contact._id"
@@ -73,9 +73,6 @@
 				</md-list-item>
 			</md-list>
 
-			<div ng-if="showSpinner" layout="row" layout-align="center center" style="min-height: 250px">
-				<md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
-			</div>
 
 			<div ng-if="!contactsList.data.length" layout="row" layout-align="center center" style="min-height: 250px">
 
