@@ -38,7 +38,7 @@
 		<div layout="column" layout-align="center center" >
 			<md-select ng-model="dateTypeSelected" placeholder="Add new date">
 				<md-option
-				ng-repeat="dateType in dateTypes"
+				ng-repeat="(key, dateType) in dateTypes track by key"
 				ng-value="dateType.name"
 				ng-click="addDate(dateType.type, contact)">
 					{{dateType.name}}
@@ -46,8 +46,8 @@
 			</md-select>
 		</div>
 
-		<md-input-container flex ng-repeat="date in contact.dates" class="meta-right">
-			<label>Date</label>
+		<md-input-container flex ng-repeat="(key, date) in contact.dates track by key" class="meta-right">
+			<label>{{ date.type | lowercase }}</label>
 			<input type="date" ng-model="date.date" required>
 			<div class="meta">
 				<md-button

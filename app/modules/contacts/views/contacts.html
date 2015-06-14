@@ -61,7 +61,7 @@
 			<md-list ng-if="!showSpinner" layout="column" layout-padding  role="listitem">
 				<md-list-item
 				class="fade"
-				ng-repeat="contact in contactsList.data | filter:filters.searchQuery"
+				ng-repeat="contact in contactsList.data | filter:filters.searchQuery track by contact._id"
 				ng-click="goToContact(contact, $event)">
 
 					<img alt="{{ contact.name }}" ng-src="{{ contact.imageUrl || '/images/avatar.png'}}" class="md-avatar">
