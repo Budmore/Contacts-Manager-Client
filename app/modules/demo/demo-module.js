@@ -4,9 +4,9 @@
 angular
 	.module('demoModule', [])
 
-	.run(['$rootScope', function($rootScope) {
-		'use strict';
+	// .run(['$rootScope', function($rootScope) {
+	// 	'use strict';
 
-		$rootScope.isDemoMode = false;
+	// 	$rootScope.isDemoMode = false;
 
-	}]);
+	// }]);

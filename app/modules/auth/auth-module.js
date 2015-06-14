@@ -43,8 +43,16 @@ angular
 
 		var hasToken = sessionService.checkSession();
 
-		if (hasToken && hasToken.token) {
+		// Prevent validate token for demo user
+		if (hasToken && hasToken.token === 'demo-mode') {
+			sessionService.setSession(hasToken.token);
+			$rootScope.isDemoMode = true;
+			$rootScope.appReady = true;
+			return;
+		}
 
+
+		if (hasToken && hasToken.token) {
 			authService.checkToken().then(
 				function checkTokenSuccess() {
 
