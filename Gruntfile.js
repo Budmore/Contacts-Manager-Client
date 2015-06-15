@@ -464,6 +464,30 @@ module.exports = function (grunt) {
       tdd: {
         configFile: 'test/karma.conf.js',
         singleRun: false,
+      },
+      coverage: {
+        configFile: 'test/karma.conf.js',
+        browsers: ['PhantomJS'],
+        plugins:[
+        'karma-jasmine',
+        'karma-requirejs',
+        'karma-coverage',
+        'karma-phantomjs-launcher'
+        ],
+
+        preprocessors: {
+          'app/modules/{,**/}*.js': 'coverage',
+        },
+
+        // with coverage, but with bad line numbers in tests reports
+        reporters: ['progress', 'dots', 'coverage'],
+
+        coverageReporter: {
+          type : 'html',
+          dir : 'coverage/'
+        },
+        singleRun: false,
+        autoWatch: false
       }
     }
   });
