@@ -1,7 +1,7 @@
 describe('authModule.controllers: "AuthCtrl"', function() {
 	'use strict';
 
-	var $q, rootScope, scope, authService, sessionService;
+	var $q, rootScope, scope, location, authService, sessionService;
 
 	beforeEach(function() {
 		module('globalConfig');
@@ -13,17 +13,19 @@ describe('authModule.controllers: "AuthCtrl"', function() {
 		go: jasmine.createSpy()
 	};
 
-	beforeEach(inject(function($rootScope, $controller, _$q_, _authService_, _sessionService_) {
+	beforeEach(inject(function($rootScope, $controller, $location, _$q_, _authService_, _sessionService_) {
 		rootScope = $rootScope;
 		scope = $rootScope.$new();
 		authService = _authService_;
 		sessionService = _sessionService_;
+		location = $location;
 		$q = _$q_;
 
 		$controller('AuthCtrl', {
 			$rootScope: rootScope,
 			$scope: scope,
 			$state: stateMock,
+			$location: location,
 			authService: authService
 		});
 
@@ -180,6 +182,18 @@ describe('authModule.controllers: "AuthCtrl"', function() {
 		expect(sessionService.clearSession).toHaveBeenCalled();
 		expect(rootScope.$broadcast).toHaveBeenCalledWith('AUTH::LOGOUT');
 		expect(stateMock.go).toHaveBeenCalledWith('login');
+	});
+
+
+
+
+	it('should loginAsGuest()', function() {
+		spyOn(sessionService, 'setSession');
+
+		scope.loginAsGuest();
+
+		expect(sessionService.setSession).toHaveBeenCalled();
+		expect(location.path()).toBe('/');
 	});
 
 
