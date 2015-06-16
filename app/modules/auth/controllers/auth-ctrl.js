@@ -4,10 +4,9 @@ angular.module('authModule.controllers')
     '$rootScope',
 	'$scope',
 	'$location',
-	'$state',
 	'authService',
 	'sessionService',
-	function($rootScope, $scope, $location, $state, authService, sessionService) {
+	function($rootScope, $scope, $location, authService, sessionService) {
 
 		$scope.user = {};
 
@@ -92,10 +91,8 @@ angular.module('authModule.controllers')
 		/**
 		 * Clear the session
 		 */
-		$scope.logout = function() {
-			sessionService.clearSession();
+		$rootScope.logout = function() {
 			$rootScope.$broadcast('AUTH::LOGOUT');
-			$state.go('login');
 		};
 
 
