@@ -126,10 +126,7 @@ angular.module('userModule.controllers', ['ngMaterial'])
 			}
 
 
-
-
 			$scope.user = userService.userModel.getModel();
-
 			$scope.getUser();
 
 		};

@@ -221,5 +221,17 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 	});
 
+	it('should init() - 2', function() {
+		spyOn(scope, 'getUser');
+		spyOn(userService.userModel, 'getModel').and.callFake(function() {
+			return;
+		});
+
+		scope.init();
+
+		expect(userService.userModel.getModel).toHaveBeenCalled();
+		expect(scope.getUser).toHaveBeenCalled();
+
+	});
 
 });
