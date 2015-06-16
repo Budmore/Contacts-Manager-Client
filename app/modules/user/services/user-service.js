@@ -84,22 +84,17 @@ angular
 
 
 		/**
-		 * Get user by id
-		 * @param {string} userId
+		 * Get user by token (in the request headers)
 		 * @return {object} dfd Promise
 		 */
 
-		this.getUserById = function(userId) {
+		this.getUser = function() {
 			var dfd = $q.defer();
 
-			var params = {
-				_id: userId
-			};
-
-			userResource.getUser(params,
-				function getUserByIdSuccess(data) {
+			userResource.getUser(
+				function getUserSuccess(data) {
 					dfd.resolve(data);
-				}, function getUserByIdError(error) {
+				}, function getUserError(error) {
 					dfd.reject(error);
 				}
 			);
@@ -129,7 +124,7 @@ angular
 
 
 		/**
-		 * Remove user. Required user._id
+		 * Remove user. Required user.password && user._id
 		 * @param  {object} user
 		 * @return {object} dfd Promise
 		 */

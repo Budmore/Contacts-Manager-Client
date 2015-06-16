@@ -44,33 +44,25 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 
 
-	it('should getUserById() - 1 no userId', function() {
-		spyOn(userService, 'getUserById');
-		scope.getUserById(null);
-
-		expect(userService.getUserById).not.toHaveBeenCalled();
-	});
-
-
-	it('should getUserById() - 2 success', function() {
+	it('should getUser() - 1 success', function() {
 		var dfd = $q.defer();
-		spyOn(userService, 'getUserById').and.returnValue(dfd.promise);
+		spyOn(userService, 'getUser').and.returnValue(dfd.promise);
 		spyOn(userService.userModel, 'setModel');
 
-		scope.getUserById(mockedUser._id);
+		scope.getUser();
 		dfd.resolve(mockedResponse);
 		scope.$digest();
 
-		expect(userService.getUserById).toHaveBeenCalledWith({_id: mockedUser._id});
+		expect(userService.getUser).toHaveBeenCalled();
 		expect(userService.userModel.setModel).toHaveBeenCalledWith(mockedResponse);
 
 	});
 
-	it('should getUserById() - 3 error', function() {
+	it('should getUser() - 2 error', function() {
 		var dfd = $q.defer();
-		spyOn(userService, 'getUserById').and.returnValue(dfd.promise);
+		spyOn(userService, 'getUser').and.returnValue(dfd.promise);
 
-		scope.getUserById(mockedUser._id);
+		scope.getUser();
 		expect(scope.isError).toBe(false);
 		expect(scope.isPending).toBe(true);
 		dfd.reject();
@@ -78,7 +70,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 		expect(scope.isError).toBe(true);
 		expect(scope.isPending).toBe(false);
-		expect(userService.getUserById).toHaveBeenCalledWith({_id: mockedUser._id});
+		expect(userService.getUser).toHaveBeenCalledWith();
 
 	});
 
@@ -86,10 +78,11 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 
 
-	it('should updateUser() - 1 no userId', function() {
+	it('should updateUser() - 1 - no user || no user._id', function() {
 		spyOn(userService, 'updateUser');
 
 		scope.updateUser(null);
+		scope.updateUser({firstname: 'Lolek'});
 
 		expect(userService.updateUser).not.toHaveBeenCalled();
 	});
@@ -100,11 +93,11 @@ describe('userModule.controller: "UserCtrl"', function() {
 		spyOn(userService.userModel, 'setModel');
 		spyOn($mdToast, 'show');
 
-		scope.updateUser(mockedUser._id);
+		scope.updateUser(mockedUser);
 		dfd.resolve(mockedResponse);
 		scope.$digest();
 
-		expect(userService.updateUser).toHaveBeenCalledWith({_id: mockedUser._id});
+		expect(userService.updateUser).toHaveBeenCalledWith(mockedUser);
 		expect($mdToast.show).toHaveBeenCalled();
 		expect(userService.userModel.setModel).toHaveBeenCalledWith(mockedResponse);
 
@@ -114,7 +107,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 		var dfd = $q.defer();
 		spyOn($mdToast, 'show');
 		spyOn(userService, 'updateUser').and.returnValue(dfd.promise);
-		scope.updateUser(mockedUser._id);
+		scope.updateUser(mockedUser);
 		expect(scope.isError).toBe(false);
 		expect(scope.isPending).toBe(true);
 		dfd.reject();
@@ -123,7 +116,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 		expect(scope.isError).toBe(true);
 		expect(scope.isPending).toBe(false);
 		expect($mdToast.show).toHaveBeenCalled();
-		expect(userService.updateUser).toHaveBeenCalledWith({_id: mockedUser._id});
+		expect(userService.updateUser).toHaveBeenCalledWith(mockedUser);
 
 	});
 
@@ -131,16 +124,26 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 
 
-	it('should removeUser() - 1 no userId/password', function() {
+	it('should removeUser() - 1 - no user || no user.password', function() {
 		spyOn(userService, 'removeUser');
 
 		scope.removeUser();
 		expect(userService.removeUser).not.toHaveBeenCalled();
 
-		scope.removeUser('someID');
+		var user1 = {
+			_id: '1123123',
+			password: null
+		};
+
+		scope.removeUser(user1);
 		expect(userService.removeUser).not.toHaveBeenCalled();
 
-		scope.removeUser(null, 'somePassword');
+		var user2 = {
+			_id: null,
+			password: 'secret'
+		};
+
+		scope.removeUser(user2);
 		expect(userService.removeUser).not.toHaveBeenCalled();
 	});
 
@@ -154,7 +157,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 			password: 'secret'
 		};
 
-		scope.removeUser(_user._id, _user.password);
+		scope.removeUser(_user);
 		dfd.resolve(mockedResponse);
 		scope.$digest();
 
@@ -173,7 +176,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 			password: 'secret'
 		};
 
-		scope.removeUser(_user._id, _user.password);
+		scope.removeUser(_user);
 		dfd.resolve(mockedResponse);
 		scope.$digest();
 
@@ -192,7 +195,7 @@ describe('userModule.controller: "UserCtrl"', function() {
 			password: 'secret'
 		};
 
-		scope.removeUser(_user._id, _user.password);
+		scope.removeUser(_user);
 		expect(scope.isError).toBe(false);
 		expect(scope.isPending).toBe(true);
 
@@ -207,6 +210,16 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 
 
+	it('should init() - 1 isDemoMode', function() {
+		spyOn(scope, 'getUser');
+		rootScope.isDemoMode = true;
+
+		scope.init();
+
+		expect(scope.user).toEqual(jasmine.any(Object));
+		expect(scope.getUser).not.toHaveBeenCalled();
+
+	});
 
 
 });
