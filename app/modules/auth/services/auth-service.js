@@ -77,11 +77,6 @@ angular
 
 			authResource.checkToken(
 				function createContactSuccess(response) {
-
-					if (response && response.token) {
-						sessionService.setSession(response.token);
-					}
-
 					dfd.resolve(response);
 				}, function createContactError(error) {
 					sessionService.clearSession();
