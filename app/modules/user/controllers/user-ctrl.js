@@ -8,6 +8,20 @@ angular.module('userModule.controllers', ['ngMaterial'])
 		'use strict';
 
 
+
+		function validEmails(emails) {
+			var result;
+			var regEx = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+			result = emails.filter(function(email) {
+				return regEx.test(email);
+			});
+
+			return result;
+		}
+
+
+
 		/**
 		 * Get user by token (in the request headers)
 		 */
@@ -20,7 +34,7 @@ angular.module('userModule.controllers', ['ngMaterial'])
 			userService.getUser().then(
 				function getUserSuccess(response) {
 					userService.userModel.setModel(response);
-
+					$scope.user = angular.copy(response);
 				}, function getUserError() {
 
 					$scope.isError = true;
@@ -52,10 +66,13 @@ angular.module('userModule.controllers', ['ngMaterial'])
 					$mdToast.show(
 						$mdToast.simple()
 						.content('The user has been updated')
+						.position('top right')
 					);
 				}, function updateUserError() {
 					$mdToast.show(
-						$mdToast.simple().content('Could not complete your request')
+						$mdToast.simple()
+						.content('Could not complete your request')
+						.position('top right')
 					);
 					$scope.isError = true;
 
@@ -85,11 +102,15 @@ angular.module('userModule.controllers', ['ngMaterial'])
 				function removeUserSuccess() {
 					$rootScope.$broadcast('AUTH::LOGOUT');
 					$mdToast.show(
-						$mdToast.simple().content('You successfully remove user.')
+						$mdToast.simple()
+						.content('You successfully remove user.')
+						.position('top right')
 					);
 				}, function removeUserError() {
 					$mdToast.show(
-						$mdToast.simple().content('Could not complete your request. Did you write correct password?')
+						$mdToast.simple()
+						.content('Could not complete your request. Did you write correct password?')
+						.position('top right')
 					);
 					$scope.isError = true;
 				}
@@ -103,16 +124,19 @@ angular.module('userModule.controllers', ['ngMaterial'])
 
 
 		var mockedUser = {
-			email: 'j.mach@budmore.pl',
-			phone: 501502503,
-			emailNotifications: [
-				'j.mach@budmore.pl',
-				'darth.vader@gmail.com',
-				'linus.torvalds@gmail.com'
-			],
-			notifications: {
-				daily: false,
-				weekly: true
+			email: 'demo@budmore.pl',
+			phone: '0 700 88 01 88',
+			recipients:{
+				emails: [
+					'j.mach@budmore.pl',
+					'darth.vader@gmail.com',
+					'linus.torvalds@gmail.com'
+				],
+				phones: []
+			},
+			notificationsTypes: {
+				email: true,
+				sms: false
 			}
 
 		};
@@ -121,14 +145,29 @@ angular.module('userModule.controllers', ['ngMaterial'])
 		$scope.init = function() {
 
 			if ($rootScope.isDemoMode) {
-				$scope.user = mockedUser;
+				$scope.user = angular.copy(mockedUser);
 				return;
 			}
 
 
-			$scope.user = userService.userModel.getModel();
 			$scope.getUser();
 
+		};
+
+		$scope.revert = function() {
+			var userModel = userService.userModel.getModel();
+			$scope.user = angular.copy(userModel.data);
+
+			if ($rootScope.isDemoMode) {
+				$scope.user = angular.copy(mockedUser);
+			}
+
+		};
+
+		$scope.saveUser = function(user) {
+			user.recipients.emails = validEmails(user.recipients.emails);
+
+			$scope.updateUser(user);
 		};
 
 

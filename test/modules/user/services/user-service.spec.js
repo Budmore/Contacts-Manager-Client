@@ -50,12 +50,12 @@ describe('userModule.services:', function() {
 				lastName: 'Mach'
 			};
 
-			$httpBackend.expectPUT(REQUEST_URL + '/user/' + mocked._id).respond(200, {});
+			$httpBackend.expectPUT(REQUEST_URL + '/users/' + mocked._id).respond(200, {});
 			userService.updateUser(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectPUT(REQUEST_URL + '/user/' + mocked._id).respond(404, {});
+			$httpBackend.expectPUT(REQUEST_URL + '/users/' + mocked._id).respond(404, {});
 			userService.updateUser(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();
@@ -68,12 +68,12 @@ describe('userModule.services:', function() {
 				lastName: 'Mach'
 			};
 
-			$httpBackend.expectDELETE(REQUEST_URL + '/user/' + mocked._id).respond(200, {});
+			$httpBackend.expectDELETE(REQUEST_URL + '/users/' + mocked._id).respond(200, {});
 			userService.removeUser(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(successCb).toHaveBeenCalled();
 
-			$httpBackend.expectDELETE(REQUEST_URL + '/user/' + mocked._id).respond(404, {});
+			$httpBackend.expectDELETE(REQUEST_URL + '/users/' + mocked._id).respond(404, {});
 			userService.removeUser(mocked).then(successCb, errorCb);
 			$httpBackend.flush();
 			expect(errorCb).toHaveBeenCalled();

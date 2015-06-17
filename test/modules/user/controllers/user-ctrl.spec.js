@@ -223,15 +223,49 @@ describe('userModule.controller: "UserCtrl"', function() {
 
 	it('should init() - 2', function() {
 		spyOn(scope, 'getUser');
-		spyOn(userService.userModel, 'getModel').and.callFake(function() {
-			return;
-		});
 
 		scope.init();
 
-		expect(userService.userModel.getModel).toHaveBeenCalled();
 		expect(scope.getUser).toHaveBeenCalled();
 
+	});
+
+
+
+
+
+
+	it('should revert()', function() {
+		spyOn(userService.userModel, 'getModel').and.callFake(function() {
+			return {
+				data: mockedUser
+			};
+		});
+
+		scope.revert();
+
+		expect(userService.userModel.getModel).toHaveBeenCalled();
+		expect(scope.user).toEqual(mockedUser);
+
+	});
+
+
+
+
+
+	it('should saveUser()', function() {
+		var _user = {
+			recipients: {
+				emails: ['invalid@email', 'good@email.com', 'somestring', 1]
+			}
+		};
+
+		spyOn(scope, 'updateUser');
+
+		scope.saveUser(_user);
+
+		expect(_user.recipients.emails.length).toBe(1); //After validate
+		expect(scope.updateUser).toHaveBeenCalled();
 	});
 
 });
