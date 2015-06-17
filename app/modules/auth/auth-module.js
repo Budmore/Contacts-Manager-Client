@@ -59,7 +59,6 @@ angular
 
 
 
-
 		$rootScope.appReady = false;
 		$rootScope.session = sessionService.getSession();
 
@@ -74,7 +73,7 @@ angular
 		}
 
 
-		if (hasToken && hasToken.hasToken) {
+		if (hasToken && hasToken.token) {
 			authService.checkToken().then(
 				function checkTokenSuccess() {
 					sessionService.setSession(hasToken.token);
