@@ -174,14 +174,11 @@ describe('authModule.controllers: "AuthCtrl"', function() {
 
 
 	it('should logout()', function() {
-		spyOn(sessionService, 'clearSession');
 		spyOn(rootScope, '$broadcast');
 
-		scope.logout();
+		rootScope.logout();
 
-		expect(sessionService.clearSession).toHaveBeenCalled();
 		expect(rootScope.$broadcast).toHaveBeenCalledWith('AUTH::LOGOUT');
-		expect(stateMock.go).toHaveBeenCalledWith('login');
 	});
 
 

@@ -1,4 +1,4 @@
-<div ng-controller="SettingsCtrl" ng-init="init()">
+<div ng-controller="UserCtrl" ng-init="init()">
 	<div layout="column" class="layout-content">
 		<div flex layout="column">
 
@@ -13,30 +13,10 @@
 
 
 
-<!-- 						<md-button
-						type="button"
-						class="md-icon-button launch"
-						ng-click="filters.show = !filters.show"
-						>
-							<md-tooltip>Show filters</md-tooltip>
-							<md-icon md-svg-icon="images/icons/more_vert.svg"></md-icon>
 
-						</md-button> -->
 
 					</div>
 				</md-toolbar>
-
-				<div ng-if="filters.show" class="slide-in fade" layout="column"  layout-padding>
-
-					<md-input-container>
-						<label>
-							<md-icon md-font-icon="glyphicon glyphicon-search" class="icon-custom"></md-icon>
-							Find contact
-						</label>
-						<input type="search" ng-model="filters.searchQuery" aria-label="Find contact">
-					</md-input-container>
-
-				</div>
 
 
 				<form name="userForm" ng-submit="saveUser(user)" class="contact-form inset"  layout-padding>
@@ -64,19 +44,19 @@
 						<h3 class="md-title">
 							Notification type and duration:
 						</h3>
-						<md-switch ng-model="user.notifications.weekly" aria-label="Set weekly notification">
+						<md-switch ng-model="user.notificationsTypes.email" aria-label="Set weekly notification">
 							Weekly notification (E-mail)
 						</md-switch>
-						<md-switch ng-disabled="true" ng-model="user.notifications.daily" aria-label="Set daily notification">
+						<md-switch ng-disabled="true" ng-model="user.notificationsTypes.sms" aria-label="Set daily notification">
 							<span class="text-muted">Daily notification (SMS)</span>
 						</md-switch>
 					</section>
 					<br>
-					<section ng-if="user.notifications.weekly" class="fade">
+					<section ng-if="user.notificationsTypes.email" class="fade">
 						<h3 class="md-title">
 							Send weekly summary to:
 						</h3>
-						<md-chips ng-model="user.emailNotifications">
+						<md-chips ng-model="user.recipients.emails">
 							<input type="email" placeholder="Enter a email">
 						</md-chips>
 					</section>

@@ -14,12 +14,6 @@ angular
 		'use strict';
 
 		$stateProvider
-			.state('settings', {
-				title: 'Settings',
-				url: '/settings',
-				templateUrl: 'modules/general/views/settings.html',
-				forLogged: true
-			})
 			.state('todo', {
 				title: '@ToDo',
 				url: '/todo',

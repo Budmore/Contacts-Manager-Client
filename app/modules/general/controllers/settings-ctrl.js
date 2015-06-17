@@ -19,6 +19,7 @@ angular.module('generalModule')
 			}
 
 		};
+
 		var userCopy = angular.copy($scope.user);
 
 

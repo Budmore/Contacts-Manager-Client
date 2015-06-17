@@ -142,21 +142,7 @@ describe('authModule services:', function() {
 			expect(errorCb).toHaveBeenCalled();
 		});
 
-		it('should checkToken() - 2 - with token', function() {
-			var mockedRespond = {
-				token: 'some$1aAsd'
-			};
-
-			spyOn(sessionService, 'setSession');
-
-			$httpBackend.expectGET(REQUEST_URL + '/auth/me').respond(200, mockedRespond);
-			authService.checkToken();
-			$httpBackend.flush();
-			expect(sessionService.setSession).toHaveBeenCalledWith(mockedRespond.token);
-		});
-
-
-		it('should checkToken() - 3 - without token', function() {
+		it('should checkToken() - 2 - without token', function() {
 			spyOn(sessionService, 'setSession');
 
 			$httpBackend.expectGET(REQUEST_URL + '/auth/me').respond(200, {});

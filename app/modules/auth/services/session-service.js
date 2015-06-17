@@ -64,6 +64,7 @@ angular
 			};
 
 			var token = localStorage.getItem('token');
+			token = angular.copy(token);
 
 			if (token) {
 				self.setHeaders(token);

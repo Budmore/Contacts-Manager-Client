@@ -21,6 +21,7 @@ angular
 		'contactsModule',
 		'generalModule',
 		'calendarModule',
+		'userModule',
 		'demoModule'
 	])
 
