@@ -58,9 +58,10 @@
 			</div>
 
 
-			<md-list class="list-hover" layout="column" layout-padding  role="listitem">
+			<md-list class="md-default-theme" layout="column" layout-padding  role="listitem">
+				<!-- <md-subheader class="md-no-sticky">Lastname</md-subheader> -->
 				<md-list-item
-				class="list-item fade"
+				class="md-with-secondary md-clickable"
 				ng-repeat="contact in contactsList.data | filter:filters.searchQuery track by contact._id"
 				ng-click="goToContact(contact, $event)">
 
@@ -78,6 +79,7 @@
 					</span>
 				</md-list-item>
 			</md-list>
+
 
 
 			<div ng-if="!contactsList.data.length" layout="row" layout-align="center center" style="min-height: 250px">
