@@ -1,8 +1,4 @@
-node_modules
+.angular
+.prompts*
 dist
-coverage
-.tmp
-.sass-cache
-bower_components
-
-*.sublime-*
+node_modules

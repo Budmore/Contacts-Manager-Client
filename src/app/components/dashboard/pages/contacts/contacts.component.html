@@ -1,0 +1,30 @@
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Contacts</h2>
+  <button
+    (click)="onNewContact()"
+    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+  >
+    Add Contact
+  </button>
+</div>
+
+<div *ngIf="error" class="mb-4 text-red-600 dark:text-red-400">
+  {{ error }}
+</div>
+
+<div *ngIf="showForm" class="mb-6">
+  <app-contact-form
+    [contact]="selectedContact"
+    (save)="onSave($event)"
+    (cancel)="showForm = false"
+  ></app-contact-form>
+</div>
+
+<app-contact-list
+  *ngIf="!showForm"
+  [contacts]="contacts"
+  [isLoading]="isLoading"
+  [error]="error"
+  (contactSelect)="onContactSelect($event)"
+  (newContact)="onNewContact()"
+></app-contact-list>

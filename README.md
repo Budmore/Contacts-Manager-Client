@@ -1,31 +1,10 @@
-# Birthday Reminder
-I forgot my grandmother's birthday for the second time in a row, sow I decided to write this Birthday Reminder aplication.
-This is REST app powered by [AngularJS 1.4]. UI components are from [Angular Material] and [Backend is written in NodeJS]
+# 🎉 Birthday Reminder
 
+Never forget an important date again! After missing my grandmother's birthday twice in a row, I decided to create an app that helps me stay on top of upcoming events. This application sends notifications to me and my family members (excluding the individual whose event it is) to ensure we all celebrate special moments together.
 
-[AngularJS 1.4]:https://angularjs.org/
-[Angular Material]:https://material.angularjs.org/0.10.0/#/
-[Backend is written in NodeJS]:https://github.com/Budmore/Contacts-Manager-NodeJS
+## 🛠️ Technology Stack
 
-
-## Demo 
-You can check working demo at http://reminder.budmore.pl
-
-
-## Build & development
-
-```
-npm install
-bower install
-grunt serve
-```
-
-Run `grunt` for building and `grunt serve` for preview.
-
-
-## Testing
-
-Running `grunt test` or `grunt test-tdd` will run the unit tests with karma and Jasmine.
- 
-
-
+- Angular 18
+- rxjs
+- Tailwind
+- Typescript
