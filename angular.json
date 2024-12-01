@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "newProjectRoot": "projects",
   "projects": {
-    "demo": {
+    "reminder": {
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -26,7 +26,7 @@
             "assets": [],
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "outputPath": "dist/demo",
+            "outputPath": "dist/reminder",
             "polyfills": ["zone.js"],
             "scripts": [],
             "styles": ["src/global_styles.css"],
@@ -37,16 +37,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "buildTarget": "demo:build:development"
+              "buildTarget": "reminder:build:development"
             },
             "production": {
-              "buildTarget": "demo:build:production",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "buildTarget": "reminder:build:production"
             }
           },
           "defaultConfiguration": "development"

@@ -8,3 +8,8 @@ Never forget an important date again! After missing my grandmother's birthday tw
 - rxjs
 - Tailwind
 - Typescript
+
+## ✨ Features
+
+- Event Notifications: Receive timely reminders for birthdays and other important events.
+- Family Coordination: Notify family members about upcoming events, while ensuring the person being celebrated isn’t notified.

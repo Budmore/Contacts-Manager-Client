@@ -2,3 +2,4 @@
 .prompts*
 dist
 node_modules
+src/environments/environment.*

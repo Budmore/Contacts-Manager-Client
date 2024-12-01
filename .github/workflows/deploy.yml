@@ -1,0 +1,43 @@
+name: Build and Deploy Angular App
+
+on:
+  workflow_dispatch: # This allows manual triggering of the workflow
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22 # Use a compatible Node.js version for Angular
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Build the Angular app
+      - name: Build Angular app
+        run: npm run build
+
+      # Step 5: Deploy to the server
+      - name: Deploy to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }} # Add your server host in repository secrets
+          SERVER_USER: ${{ secrets.SERVER_USER }} # Add your server username in repository secrets
+          SERVER_DEST: ${{ secrets.SERVER_DEST }} # Add the destination path in repository secrets
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_ed25519.pub
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+          scp -r dist/reminder/browser/* $SERVER_USER@$SERVER_HOST:$SERVER_DEST
